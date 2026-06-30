@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+
+Siempre mantener el proyecto compilable.
+
+No dejar código parcialmente implementado.
+
+Si una funcionalidad requiere varias etapas:
+- completar una etapa funcional
+- verificar que compile
+- recién continuar con la siguiente.

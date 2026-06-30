@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+---
+
+Este proyecto corresponde a un Trabajo Fin de Máster de Ingeniería de Software.
+
+Tecnologías:
+- React Native
+- TypeScript
+- NestJS
+- OpenAI API
+- SQLite
+
+Principios:
+
+- Utilizar TypeScript estricto.
+- Evitar any salvo necesidad justificada.
+- Priorizar simplicidad sobre complejidad.
+- Evitar sobreingeniería.
+- Mantener arquitectura modular.
+- Separar presentación, lógica de negocio y persistencia.
+- Generar código entendible para un desarrollador individual.
+- Explicar decisiones técnicas importantes.
+- Favorecer patrones compatibles con documentación académica.
+- Proponer diagramas C4 cuando sea relevante.

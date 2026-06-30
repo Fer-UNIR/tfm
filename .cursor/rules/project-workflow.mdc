@@ -1,0 +1,31 @@
+---
+alwaysApply: true
+---
+
+Antes de comenzar cualquier tarea:
+
+1. Leer:
+- README.md
+- docs/vision.md
+- docs/architecture.md
+- docs/business-rules.md
+- docs/api-design.md
+
+2. Comprender el contexto antes de modificar código.
+
+3. Si la tarea afecta arquitectura o contratos API, revisar también:
+- docs/decisions/*
+- docs/use-cases.md
+
+4. Antes de modificar archivos:
+- explicar brevemente el plan
+- indicar qué archivos serán modificados
+
+5. No modificar archivos fuera del alcance solicitado.
+
+6. Mantener consistencia con la arquitectura existente.
+
+7. Al finalizar:
+- resumir cambios
+- indicar archivos modificados
+- explicar cómo probar la funcionalidad
