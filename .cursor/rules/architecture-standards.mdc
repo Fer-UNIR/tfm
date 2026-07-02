@@ -1,0 +1,63 @@
+---
+alwaysApply: true
+---
+
+---
+alwaysApply: true
+---
+
+# Architecture Standards
+
+## Principios
+
+- Utilizar TypeScript estricto.
+- Priorizar simplicidad sobre complejidad.
+- Evitar sobreingeniería.
+- Mantener arquitectura modular.
+- Separar presentación, lógica de negocio y persistencia.
+- Evitar `any` salvo necesidad justificada.
+- Generar código entendible para un desarrollador individual.
+- Explicar decisiones técnicas importantes.
+- Favorecer patrones compatibles con documentación académica.
+- Proponer diagramas C4 cuando sea relevante.
+
+## Frontend
+
+- Usar React Native con TypeScript.
+- Separar pantallas, componentes, hooks, servicios y tipos.
+- Evitar lógica de negocio compleja dentro de componentes visuales.
+- Centralizar llamadas a API en servicios.
+- Mantener componentes pequeños y legibles.
+- Usar nombres descriptivos.
+
+## Backend
+
+- Usar NestJS con estructura modular.
+- Separar controller, service, DTOs, entities/models y tests.
+- Validar entradas con DTOs.
+- No exponer lógica de negocio en controllers.
+- Mantener respuestas consistentes.
+- Documentar endpoints relevantes en `docs/api-design.md`.
+
+## Persistencia
+
+- Usar SQLite para persistencia local o prototipo cuando corresponda.
+- Preparar la arquitectura para posible PostgreSQL futuro solo si no añade complejidad innecesaria.
+- No acoplar reglas de negocio directamente a la base de datos.
+- Documentar modelos relevantes.
+
+## IA
+
+- Usar OpenAI API solo desde backend cuando sea posible.
+- Nunca exponer API keys en frontend.
+- Documentar prompts importantes si forman parte de la contribución.
+- Validar y limitar las entradas enviadas al modelo.
+- Tratar las respuestas generadas como sugerencias, no como verdad absoluta.
+
+## Documentación técnica
+
+Cuando se implemente o cambie arquitectura:
+
+- Actualizar `docs/architecture.md` si corresponde.
+- Actualizar `docs/api-design.md` si cambia un contrato.
+- Crear o actualizar ADRs en `docs/adr/` para decisiones importantes.

@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+---
+
+---
+alwaysApply: true
+---
+
+# Project Context
+
+Este proyecto corresponde a un Trabajo Fin de Máster de Ingeniería de Software.
+
+## Producto
+
+SmartPantry-TFM es una aplicación móvil para la gestión inteligente de inventario doméstico de alimentos, listas de compra y generación de recetas asistida por IA.
+
+## Objetivo del TFM
+
+Diseñar, implementar y evaluar un prototipo funcional que demuestre cómo una aplicación móvil puede ayudar a reducir la fricción en la gestión doméstica de alimentos mediante inventario, compras y asistencia inteligente.
+
+## Alcance del MVP
+
+El MVP debe priorizar:
+
+- Gestión básica de productos.
+- Inventario doméstico.
+- Lista de compras.
+- Alertas o indicadores de stock mínimo.
+- Generación de recetas con IA basada en productos disponibles.
+- Documentación técnica y académica suficiente para justificar el desarrollo.
+
+## Fuera de alcance inicial
+
+No implementar salvo decisión explícita:
+
+- Marketplace.
+- Gestión multiusuario compleja.
+- Pagos.
+- Recomendaciones nutricionales médicas.
+- Sincronización avanzada entre dispositivos.
+- Login complejo si no es necesario para el prototipo.
+- Despliegue productivo completo.
+
+## Tecnologías previstas
+
+- React Native.
+- TypeScript.
+- NestJS.
+- SQLite.
+- OpenAI API.
+
+## Criterios generales
+
+- El proyecto debe ser viable para una sola persona.
+- Priorizar simplicidad, trazabilidad y evidencia académica.
+- Toda decisión importante debe poder justificarse en la memoria del TFM.
+- El desarrollo debe generar artefactos reutilizables para la documentación: diagramas, contratos API, capturas, pruebas y decisiones técnicas.

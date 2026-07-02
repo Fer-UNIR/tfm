@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+
+Toda funcionalidad nueva debe incluir:
+
+- estrategia de prueba
+- tests cuando sea posible
+- instrucciones para ejecutarlos
+- criterios de aceptación
+
+Nunca considerar una tarea terminada sin explicar cómo validarla.
