@@ -14,7 +14,7 @@ Antes de comenzar cualquier tarea:
 2. Comprender el contexto antes de modificar código.
 
 3. Si la tarea afecta arquitectura o contratos API, revisar también:
-- docs/decisions/*
+- docs/adr/*
 - docs/use-cases.md
 
 4. Antes de modificar archivos:
