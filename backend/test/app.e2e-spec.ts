@@ -21,10 +21,16 @@ describe('HealthController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/api/v1/health')
       .expect(200)
-      .expect(({ body }: { body: { data: { status: string; database: string } } }) => {
-        expect(body.data.status).toBe('ok');
-        expect(body.data.database).toBe('up');
-      });
+      .expect(
+        ({
+          body,
+        }: {
+          body: { data: { status: string; database: string } };
+        }) => {
+          expect(body.data.status).toBe('ok');
+          expect(body.data.database).toBe('up');
+        },
+      );
   });
 
   afterEach(async () => {

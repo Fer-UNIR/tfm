@@ -1,6 +1,6 @@
 // Proveedor de conexion SQLite con ruta configurable por variable de entorno.
 import { existsSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, isAbsolute, resolve } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 
 export const SQLITE_CONNECTION = 'SQLITE_CONNECTION';
@@ -11,7 +11,9 @@ export const sqliteProvider = {
   provide: SQLITE_CONNECTION,
   useFactory: (): DatabaseSync => {
     const configuredPath = process.env.SQLITE_DB_PATH ?? DEFAULT_DATABASE_PATH;
-    const absoluteDatabasePath = join(process.cwd(), configuredPath);
+    const absoluteDatabasePath = isAbsolute(configuredPath)
+      ? configuredPath
+      : resolve(process.cwd(), configuredPath);
     const storageDirectory = dirname(absoluteDatabasePath);
 
     if (!existsSync(storageDirectory)) {
