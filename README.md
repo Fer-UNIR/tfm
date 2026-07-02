@@ -111,17 +111,67 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
 # Estado del proyecto
 
-Actualmente el proyecto se encuentra en fase de diseño y documentación técnica.
+Actualmente el proyecto se encuentra en **Fase 1 (base técnica inicial)**:
 
-Las siguientes etapas corresponden a:
+- backend NestJS inicializado;
+- frontend Expo + TypeScript inicializado;
+- endpoint `GET /api/v1/health` disponible;
+- configuración básica de SQLite en backend;
+- pantalla inicial móvil preparada para consumir backend.
 
-- inicialización del frontend;
-- inicialización del backend;
-- implementación del inventario;
-- implementación de la lista de compras;
-- integración con OpenAI;
-- pruebas y validación;
-- elaboración de la memoria del TFM.
+En esta fase **no** se implementa aún lógica completa de inventario, compras ni recetas IA.
+
+---
+
+# Puesta en marcha (Fase 1)
+
+## Requisitos previos
+
+- Node.js 22+ (recomendado 24+)
+- npm
+- Expo Go o emulador (para frontend)
+
+## 1) Backend
+
+```bash
+cd backend
+npm install
+npm run start:dev
+```
+
+Health check:
+
+```bash
+curl http://localhost:3000/api/v1/health
+```
+
+Variables de entorno de ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+> `backend/.env.example` no incluye claves reales.
+
+## 2) Frontend
+
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+Variables de entorno de ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+`frontend/.env.example` define:
+
+- `EXPO_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1`
+
+Con backend y frontend levantados, la pantalla inicial ejecuta el health check y muestra el estado de API y SQLite.
 
 ---
 
