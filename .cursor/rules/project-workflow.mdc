@@ -10,6 +10,7 @@ Antes de comenzar cualquier tarea:
 - docs/architecture.md
 - docs/business-rules.md
 - docs/api-design.md
+- docs/requirements.md
 
 2. Comprender el contexto antes de modificar código.
 

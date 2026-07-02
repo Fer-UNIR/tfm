@@ -1,76 +1,324 @@
-# Requisitos del sistema
+# Software Requirements Specification (SRS)
 
-## Proposito del documento
+# SmartPantry
 
-Este documento define los requisitos funcionales, no funcionales, restricciones y supuestos de SmartPantry-TFM, manteniendo trazabilidad con casos de uso, arquitectura e implementacion.
+Versión: 1.0
 
-## Indice
+---
 
-1. Alcance de requisitos
-2. Convenciones de identificacion
-3. Requisitos funcionales
-4. Requisitos no funcionales
-5. Restricciones tecnicas
-6. Supuestos
-7. Criterios de aceptacion
-8. Trazabilidad
+# 1. Introducción
 
-## Alcance de requisitos
+## 1.1 Propósito
 
-Pendiente de completar.
+Este documento define los requisitos funcionales y no funcionales del proyecto SmartPantry.
 
-## Convenciones de identificacion
+Su objetivo es servir como referencia durante el desarrollo del sistema y garantizar la trazabilidad entre los requisitos, la arquitectura, los casos de uso, la implementación y las pruebas.
 
-- RF-001: requisito funcional.
-- RNF-001: requisito no funcional.
-- RT-001: restriccion tecnica.
+---
 
-> Nota: mantener identificadores estables para facilitar referencias desde la memoria del TFM, casos de uso y pruebas.
+## 1.2 Alcance
 
-## Requisitos funcionales
+SmartPantry es una aplicación móvil para la gestión inteligente del inventario doméstico de alimentos.
 
-### RF-001 Gestion de inventario domestico
+El sistema permite controlar los productos disponibles, generar listas de compra y obtener recetas utilizando Inteligencia Artificial a partir del inventario existente.
 
-Pendiente de completar.
+Este documento describe únicamente los requisitos correspondientes al MVP desarrollado como Trabajo Fin de Máster.
 
-### RF-002 Gestion de lista de compras
+---
 
-Pendiente de completar.
+## 1.3 Definiciones
 
-### RF-003 Generacion de recetas asistida por IA
+| Término | Definición |
+|----------|------------|
+| Inventario | Productos actualmente disponibles en el hogar |
+| Stock | Cantidad disponible de un producto |
+| Stock mínimo | Cantidad mínima configurada antes de recomendar la compra |
+| Lista de compras | Productos pendientes de adquirir |
+| Receta IA | Receta generada mediante OpenAI utilizando el inventario disponible |
 
-Pendiente de completar.
+---
 
-## Requisitos no funcionales
+# 2. Stakeholders
 
-### RNF-001 Usabilidad
+## Usuario principal
 
-Pendiente de completar.
+Persona que administra los alimentos de su hogar.
 
-### RNF-002 Mantenibilidad
+## Desarrollador
 
-Pendiente de completar.
+Responsable de implementar el sistema.
 
-### RNF-003 Privacidad y seguridad
+## Tribunal del TFM
 
-Pendiente de completar.
+Evaluará el diseño, implementación y calidad técnica del prototipo.
 
-## Restricciones tecnicas
+---
 
-Pendiente de completar.
+# 3. Requisitos funcionales
 
-## Supuestos
+## Inventario
 
-Pendiente de completar.
+### RF-001
 
-## Criterios de aceptacion
+Registrar un nuevo producto.
 
-Pendiente de completar.
+Prioridad: Alta
 
-## Trazabilidad
+---
 
-| ID | Caso de uso | Modulo | Estado | Evidencia |
-| --- | --- | --- | --- | --- |
-| Pendiente | Pendiente | Pendiente | Pendiente | Pendiente |
+### RF-002
 
-> Nota: completar esta tabla conforme avancen el diseno, la implementacion y la validacion.
+Editar un producto existente.
+
+Prioridad: Alta
+
+---
+
+### RF-003
+
+Eliminar un producto.
+
+Prioridad: Alta
+
+---
+
+### RF-004
+
+Actualizar la cantidad disponible de un producto.
+
+Prioridad: Alta
+
+---
+
+### RF-005
+
+Consultar el inventario.
+
+Prioridad: Alta
+
+---
+
+### RF-006
+
+Filtrar productos por categoría.
+
+Prioridad: Media
+
+---
+
+### RF-007
+
+Buscar productos.
+
+Prioridad: Media
+
+---
+
+## Lista de compras
+
+### RF-008
+
+Crear una lista de compras.
+
+Prioridad: Alta
+
+---
+
+### RF-009
+
+Agregar productos manualmente.
+
+Prioridad: Alta
+
+---
+
+### RF-010
+
+Agregar automáticamente productos bajo stock.
+
+Prioridad: Alta
+
+---
+
+### RF-011
+
+Marcar productos como comprados.
+
+Prioridad: Alta
+
+---
+
+### RF-012
+
+Mover automáticamente productos comprados al inventario.
+
+Prioridad: Alta
+
+---
+
+## Gestión de stock
+
+### RF-013
+
+Configurar stock mínimo por producto.
+
+Prioridad: Alta
+
+---
+
+### RF-014
+
+Detectar productos bajo stock.
+
+Prioridad: Alta
+
+---
+
+## Recetas IA
+
+### RF-015
+
+Generar recetas utilizando únicamente productos disponibles.
+
+Prioridad: Alta
+
+---
+
+### RF-016
+
+Permitir regenerar una receta.
+
+Prioridad: Media
+
+---
+
+### RF-017
+
+Mostrar ingredientes faltantes cuando la IA los sugiera.
+
+Prioridad: Media
+
+---
+
+## Persistencia
+
+### RF-018
+
+Guardar toda la información localmente.
+
+Prioridad: Alta
+
+---
+
+### RF-019
+
+RF-019 Recuperar el inventario y la lista de compras al reiniciar la aplicación.
+
+Prioridad: Alta
+
+---
+
+# 4. Requisitos no funcionales
+
+## RNF-001
+
+La aplicación deberá funcionar sin conexión para todas las funcionalidades excepto la generación de recetas mediante IA.
+
+---
+
+## RNF-002
+
+La interfaz deberá ser intuitiva y requerir el menor número posible de acciones para realizar tareas frecuentes.
+
+---
+
+## RNF-003
+
+La arquitectura deberá ser modular.
+
+---
+
+## RNF-004
+
+Frontend y backend deberán permanecer desacoplados.
+
+---
+
+## RNF-005
+
+La aplicación deberá utilizar TypeScript estricto.
+
+---
+
+## RNF-006
+
+La API deberá exponer respuestas consistentes.
+
+---
+
+## RNF-007
+
+Las claves API nunca estarán expuestas en el frontend.
+
+---
+
+## RNF-008
+
+El sistema deberá permitir futuras ampliaciones sin modificar significativamente la arquitectura existente.
+
+---
+
+## RNF-009
+
+El código deberá ser fácilmente mantenible y documentado.
+
+---
+
+## RNF-010
+
+El sistema deberá permitir pruebas unitarias y de integración.
+
+---
+
+# 5. Restricciones
+
+- React Native.
+- NestJS.
+- SQLite.
+- OpenAI API.
+- TypeScript.
+- Desarrollo individual.
+- Arquitectura preparada para crecimiento.
+
+---
+
+# 6. Supuestos
+
+- El usuario administra un único hogar.
+- Un producto pertenece a una única categoría.
+- Las cantidades se gestionan mediante unidades simples.
+- La IA puede generar resultados diferentes para una misma petición.
+
+---
+
+# 7. Criterios de aceptación generales
+
+Se considerará completado un requisito cuando:
+
+- esté implementado;
+- compile correctamente;
+- pase las pruebas correspondientes;
+- esté documentado;
+- pueda demostrarse durante la defensa del TFM.
+
+---
+
+# 8. Trazabilidad
+
+| Requisito | Caso de uso | API | Test |
+|------------|------------|-----|------|
+| RF-001 | UC-001 | POST /products | ✅ |
+| RF-002 | UC-002 | PUT /products/{id} | ✅ |
+| RF-003 | UC-003 | DELETE /products/{id} | ✅ |
+| RF-004 | UC-004 | PATCH /inventory | ✅ |
+| ... | ... | ... | ... |

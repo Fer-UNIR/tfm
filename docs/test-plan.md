@@ -1,94 +1,352 @@
 # Plan de pruebas
 
-## Proposito del documento
+# SmartPantry
 
-Este documento define la estrategia de pruebas y validacion de SmartPantry-TFM, incluyendo pruebas automatizadas, validacion manual, criterios de aceptacion, cobertura basica y revision de regresiones.
+Versión: 1.0
 
-## Indice
+---
 
-1. Objetivos de calidad
-2. Alcance de pruebas
-3. Pruebas automatizadas
-4. Validacion manual
-5. Criterios de aceptacion
-6. Cobertura basica
-7. Revision de regresiones
-8. Comandos de ejecucion
-9. Evidencias y resultados
+# 1. Propósito
 
-## Objetivos de calidad
+Este documento define la estrategia de pruebas y validación del MVP de SmartPantry.
 
-Pendiente de completar.
+El objetivo es asegurar que las funcionalidades principales del sistema puedan verificarse de forma reproducible y que exista evidencia técnica suficiente para respaldar el desarrollo del Trabajo Fin de Máster.
 
-> Nota: definir objetivos verificables para el MVP, priorizando reglas de negocio, contratos API, flujos principales y estados relevantes de la interfaz movil.
+---
 
-## Alcance de pruebas
+# 2. Alcance
 
-Pendiente de completar.
+El plan de pruebas cubre:
 
-### Incluido
+- pruebas unitarias;
+- pruebas de integración;
+- pruebas e2e de backend;
+- pruebas de componentes frontend;
+- validación manual de flujos principales;
+- revisión de criterios de aceptación;
+- evidencia para la memoria del TFM.
 
-- Pruebas unitarias backend con Jest.
-- Pruebas e2e backend en NestJS.
-- Pruebas de componentes frontend en React Native.
-- Validacion manual de flujos principales.
-- Revision de regresiones.
+---
 
-### Fuera de alcance inicial
+# 3. Estrategia general
 
-Pendiente de completar.
+La estrategia de pruebas se organizará por funcionalidad, no solo por capa técnica.
 
-> Nota: documentar aqui las pruebas no abordadas en el prototipo, como pruebas de carga, pruebas de seguridad avanzadas o pruebas en multiples dispositivos fisicos, salvo decision explicita.
+Cada funcionalidad relevante deberá validar:
 
-## Pruebas automatizadas
+- reglas de negocio;
+- contratos de API;
+- comportamiento de interfaz;
+- persistencia;
+- manejo de errores;
+- criterios de aceptación.
 
-### Backend unitario
+---
 
-Pendiente de completar.
+# 4. Tipos de prueba
 
-### Backend e2e
+## 4.1 Pruebas unitarias
 
-Pendiente de completar.
+Validan unidades pequeñas y aisladas de lógica.
 
-### Frontend componentes
+Aplican principalmente a:
 
-Pendiente de completar.
+- servicios backend;
+- reglas de negocio;
+- validadores;
+- mappers;
+- helpers;
+- lógica reutilizable del frontend.
 
-## Validacion manual
+## 4.2 Pruebas de integración
 
-| Flujo | Precondiciones | Pasos | Resultado esperado | Estado |
-| --- | --- | --- | --- | --- |
-| Pendiente | Pendiente | Pendiente | Pendiente | Pendiente |
+Validan la interacción entre componentes internos.
 
-## Criterios de aceptacion
+Aplican a:
 
-| Identificador | Funcionalidad | Criterio | Metodo de validacion | Estado |
-| --- | --- | --- | --- | --- |
-| Pendiente | Pendiente | Pendiente | Pendiente | Pendiente |
+- servicios y repositorios;
+- capa de persistencia;
+- módulos de backend;
+- comunicación entre frontend y servicios API simulados.
 
-## Cobertura basica
+## 4.3 Pruebas e2e backend
 
-Pendiente de completar.
+Validan endpoints completos desde la entrada HTTP hasta la respuesta.
 
-> Nota: registrar modulos cubiertos, rutas criticas sin cubrir y riesgos residuales. Priorizar cobertura significativa sobre porcentajes aislados.
+Aplican a:
 
-## Revision de regresiones
+- creación de productos;
+- consulta de inventario;
+- actualización de stock;
+- lista de compras;
+- generación de recetas.
 
-Pendiente de completar.
+## 4.4 Pruebas de componentes frontend
 
-> Nota: documentar regresiones detectadas, pasos de reproduccion, prueba asociada y estado de correccion.
+Validan pantallas o componentes móviles.
 
-## Comandos de ejecucion
+Aplican a:
 
-Pendiente de completar cuando existan scripts definidos en `backend`, `frontend` o en la raiz del repositorio.
+- renderizado de estados;
+- acciones del usuario;
+- formularios;
+- mensajes de error;
+- estados de carga;
+- listas vacías.
+
+## 4.5 Validación manual
+
+Complementa las pruebas automatizadas y permite comprobar flujos reales de usuario.
+
+Aplicará especialmente a:
+
+- experiencia de uso;
+- navegación;
+- validación visual;
+- generación de recetas con IA;
+- capturas para la memoria del TFM.
+
+---
+
+# 5. Herramientas previstas
+
+| Área | Herramienta |
+|---|---|
+| Backend unitario | Jest |
+| Backend e2e | Jest + Supertest |
+| Frontend | React Native Testing Library |
+| Validación manual API | Postman, Insomnia o curl |
+| Validación móvil | Expo Go o emulador |
+| Cobertura | Jest coverage |
+
+---
+
+# 6. Comandos previstos
+
+Los comandos concretos se confirmarán cuando se inicialicen los proyectos `backend` y `frontend`.
+
+## Backend
 
 ```bash
-# Ejemplo pendiente de confirmar:
-# npm test
+npm run test
+npm run test:e2e
+npm run test:cov
+npm run lint
+npm run build
 ```
 
-## Evidencias y resultados
+## Frontend
 
-Pendiente de completar.
+```bash
+npm test
+npm run lint
+npm run typecheck
+npx expo start
+```
 
-> Nota: incluir fecha, alcance validado, comandos ejecutados, resultado, incidencias y observaciones relevantes para la memoria del TFM.
+---
+
+# 7. Criterios generales de aceptación
+
+Una funcionalidad se considerará validada cuando:
+
+- compile correctamente;
+- no rompa funcionalidades existentes;
+- cumpla los requisitos relacionados;
+- respete las reglas de negocio;
+- tenga pruebas automatizadas cuando sea viable;
+- tenga validación manual documentada;
+- incluya instrucciones claras para probarla;
+- tenga evidencia suficiente para el TFM.
+
+---
+
+# 8. Plan de pruebas por funcionalidad
+
+---
+
+# 8.1 Inventario
+
+## Requisitos relacionados
+
+RF-001, RF-002, RF-003, RF-004, RF-005, RF-006, RF-007, RF-013, RF-014
+
+## Reglas relacionadas
+
+RN-INV-001, RN-INV-002, RN-INV-003, RN-INV-004, RN-INV-005, RN-STK-001, RN-STK-002
+
+## Pruebas unitarias
+
+- Registrar producto válido.
+- Rechazar producto sin nombre.
+- Rechazar cantidad negativa.
+- Rechazar producto duplicado.
+- Actualizar cantidad válida.
+- Detectar producto bajo stock.
+- No marcar bajo stock si no existe stock mínimo.
+
+## Pruebas e2e backend
+
+- `POST /products`
+- `GET /products`
+- `GET /products/{id}`
+- `PUT /products/{id}`
+- `DELETE /products/{id}`
+- `PATCH /inventory/products/{id}/quantity`
+- `GET /inventory/low-stock`
+
+## Pruebas frontend
+
+- Mostrar inventario vacío.
+- Mostrar lista de productos.
+- Agregar producto.
+- Editar producto.
+- Eliminar producto.
+- Mostrar errores de validación.
+- Mostrar productos bajo stock.
+
+## Validación manual
+
+| Paso | Resultado esperado |
+|---|---|
+| Crear un producto válido | El producto aparece en el inventario |
+| Crear producto con cantidad negativa | El sistema muestra error |
+| Configurar stock mínimo | El sistema identifica bajo stock |
+| Eliminar producto | El producto deja de aparecer |
+
+---
+
+# 8.2 Lista de compras
+
+## Requisitos relacionados
+
+RF-008, RF-009, RF-010, RF-011, RF-012
+
+## Reglas relacionadas
+
+RN-SHOP-001, RN-SHOP-002, RN-SHOP-003, RN-SHOP-004, RN-SHOP-005, RN-SHOP-006, RN-SHOP-007
+
+## Pruebas unitarias
+
+- Agregar producto manualmente.
+- Evitar duplicados.
+- Actualizar cantidad si el producto ya existe.
+- Rechazar cantidad menor o igual a cero.
+- Marcar producto como comprado.
+- Sumar cantidad comprada al inventario.
+
+## Pruebas e2e backend
+
+- `GET /shopping-list`
+- `POST /shopping-list/items`
+- `POST /shopping-list/items/from-low-stock`
+- `PATCH /shopping-list/items/{id}/purchase`
+- `DELETE /shopping-list/items/{id}`
+
+## Pruebas frontend
+
+- Mostrar lista vacía.
+- Agregar producto a la lista.
+- Agregar productos bajo stock.
+- Marcar producto como comprado.
+- Eliminar producto de la lista.
+- Mostrar errores de validación.
+
+## Validación manual
+
+| Paso | Resultado esperado |
+|---|---|
+| Agregar producto a compras | Aparece como pendiente |
+| Agregar mismo producto nuevamente | Se actualiza cantidad, no se duplica |
+| Marcar como comprado | Se actualiza inventario |
+| Eliminar producto | Desaparece de la lista |
+
+---
+
+# 8.3 Recetas con IA
+
+## Requisitos relacionados
+
+RF-015, RF-016, RF-017
+
+## Reglas relacionadas
+
+RN-AI-001, RN-AI-002, RN-AI-003, RN-AI-004, RN-AI-005, RN-AI-006, RN-AI-007, RN-AI-008
+
+## Pruebas unitarias
+
+- Construir prompt con productos disponibles.
+- Rechazar generación con inventario vacío.
+- Validar respuesta normalizada.
+- Manejar error del servicio de IA.
+- No almacenar receta generada.
+
+## Pruebas e2e backend
+
+- `POST /recipes/generate`
+- Respuesta exitosa con inventario válido.
+- Error con inventario vacío.
+- Error si falla el servicio externo.
+
+## Pruebas frontend
+
+- Mostrar botón de generación.
+- Mostrar estado de carga.
+- Mostrar receta generada.
+- Mostrar ingredientes utilizados.
+- Mostrar ingredientes faltantes.
+- Mostrar error si no se puede generar receta.
+- Permitir regenerar receta.
+
+## Validación manual
+
+| Paso | Resultado esperado |
+|---|---|
+| Generar receta con inventario disponible | Se muestra una receta |
+| Generar receta sin inventario | Se muestra mensaje de error |
+| Regenerar receta | Se obtiene una nueva sugerencia |
+| Reiniciar aplicación | La receta anterior no queda almacenada |
+
+---
+
+# 9. Evidencia para el TFM
+
+Durante la validación se recopilarán:
+
+- capturas de pantalla del frontend;
+- salida de pruebas automatizadas;
+- capturas de Postman, Insomnia o terminal;
+- tabla de requisitos validados;
+- errores detectados y corregidos;
+- limitaciones conocidas.
+
+---
+
+# 10. Matriz de trazabilidad
+
+| Funcionalidad | Requisitos | Reglas | Pruebas |
+|---|---|---|---|
+| Inventario | RF-001 a RF-007, RF-013, RF-014 | RN-INV, RN-STK | Unitarias, e2e, frontend, manual |
+| Lista de compras | RF-008 a RF-012 | RN-SHOP | Unitarias, e2e, frontend, manual |
+| Recetas IA | RF-015 a RF-017 | RN-AI | Unitarias, e2e, frontend, manual |
+| Persistencia | RF-018, RF-019 | RN-DATA | Integración, manual |
+
+---
+
+# 11. Riesgos de prueba
+
+| Riesgo | Mitigación |
+|---|---|
+| Respuestas variables de IA | Mockear OpenAI en pruebas automatizadas y validar manualmente casos reales. |
+| Falta de tiempo | Priorizar pruebas de reglas de negocio y flujos críticos. |
+| Cambios en contratos API | Mantener `docs/api-design.md` actualizado. |
+| Dificultad de pruebas móviles | Complementar con validación manual documentada. |
+| Persistencia local inconsistente | Usar datos de prueba controlados y reset de base cuando sea necesario. |
+
+---
+
+# 12. Estado inicial
+
+El plan de pruebas se encuentra en estado inicial.
+
+Será actualizado a medida que se implementen los módulos y se definan los comandos reales de ejecución.
