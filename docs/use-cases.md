@@ -313,4 +313,3 @@ Se incluirá un diagrama UML que represente gráficamente las relaciones entre e
 | UC-006 | RF-008, RF-009, RF-010 | RN-SHOP-001, RN-SHOP-002, RN-SHOP-003 |
 | UC-007 | RF-011, RF-012 | RN-SHOP-005, RN-SHOP-006 |
 | UC-008 | RF-015, RF-016, RF-017 | RN-AI-001, RN-AI-002, RN-AI-003 |
-| UC-009 | RF-015 | RN-AI-001 |

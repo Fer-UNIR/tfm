@@ -174,7 +174,7 @@ El backend se organizará inicialmente en los siguientes módulos:
 | ProductsModule | Gestión de productos base |
 | InventoryModule | Gestión de cantidades disponibles y stock mínimo |
 | ShoppingListModule | Gestión de productos pendientes de compra |
-| RecipesModule | Generación y consulta de recetas |
+| RecipesModule | Generación efímera de recetas |
 | AiModule | Integración con OpenAI API |
 | PersistenceModule | Capa de abstracción para acceso a datos. Inicialmente implementada con SQLite, pero diseñada para permitir sustitución futura por otra tecnología de persistencia. |
 

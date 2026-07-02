@@ -212,7 +212,7 @@ Prioridad: Alta
 
 ### RF-019
 
-RF-019 Recuperar el inventario y la lista de compras al reiniciar la aplicación.
+Recuperar el inventario y la lista de compras al reiniciar la aplicación.
 
 Prioridad: Alta
 

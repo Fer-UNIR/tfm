@@ -1,80 +1,130 @@
-# SmartPantry-TFM
+# SmartPantry
 
-## Proposito del documento
+> Trabajo Fin de Máster – Máster Universitario en Ingeniería de Software
 
-Este README proporciona una vision general del proyecto SmartPantry-TFM y sirve como punto de entrada para desarrollo, documentacion tecnica y seguimiento del Trabajo Fin de Master.
+SmartPantry es una aplicación móvil que permite gestionar el inventario doméstico de alimentos, facilitar la planificación de compras y generar recetas mediante Inteligencia Artificial utilizando los ingredientes disponibles.
 
-## Indice
+El proyecto se desarrolla como prototipo funcional para el Trabajo Fin de Máster y prioriza una arquitectura modular, mantenible y fácilmente extensible.
 
-1. Descripcion general
-2. Objetivos del proyecto
-3. Tecnologias principales
-4. Estructura del repositorio
-5. Puesta en marcha
-6. Documentacion del TFM
-7. Estado del proyecto
-8. Licencia
+---
 
-## Descripcion general
+# Objetivos
 
-SmartPantry-TFM es una aplicacion movil para la gestion inteligente de inventario domestico, listas de compra y generacion de recetas asistida por inteligencia artificial.
+## Objetivo general
 
-> Nota: esta seccion se completara con una descripcion sintetica del problema, la solucion propuesta y el alcance academico del TFM.
+Desarrollar un prototipo funcional de aplicación móvil que permita gestionar el inventario doméstico de alimentos y asistir al usuario en la planificación de compras y recetas mediante Inteligencia Artificial.
 
-## Objetivos del proyecto
+## Objetivos específicos
 
-### Objetivo general
+- Gestionar productos del inventario.
+- Actualizar cantidades disponibles.
+- Gestionar listas de compra.
+- Detectar productos bajo stock.
+- Generar recetas mediante IA utilizando los productos disponibles.
+- Diseñar una arquitectura modular preparada para futuras ampliaciones.
 
-Pendiente de definir.
+---
 
-### Objetivos especificos
+# Tecnologías
 
-- Pendiente de definir.
+## Frontend
 
-## Tecnologias principales
+- React Native
+- TypeScript
 
-- Frontend: React Native y TypeScript.
-- Backend: NestJS y TypeScript.
-- Persistencia local: SQLite.
-- Inteligencia artificial: OpenAI API.
+## Backend
 
-> Nota: los comandos concretos de instalacion y ejecucion se documentaran cuando se inicialicen los proyectos `frontend` y `backend`.
+- NestJS
+- TypeScript
 
-## Estructura del repositorio
+## Persistencia
+
+- SQLite
+
+## Inteligencia Artificial
+
+- OpenAI API
+
+---
+
+# Arquitectura
+
+El sistema se organiza en cuatro componentes principales:
+
+- Aplicación móvil (React Native)
+- Backend API (NestJS)
+- Persistencia local (SQLite)
+- Servicio externo OpenAI para generación de recetas
+
+La lógica de negocio reside en el backend, manteniendo el frontend desacoplado de la persistencia y de los servicios de Inteligencia Artificial.
+
+---
+
+# Estructura del repositorio
 
 ```text
-.
+smartpantry-tfm/
+│
 ├── .cursor/
+│   ├── rules/
+│   └── skills/
+│
 ├── docs/
+│   ├── architecture.md
+│   ├── api-design.md
+│   ├── business-rules.md
+│   ├── glossary.md
+│   ├── requirements.md
+│   ├── roadmap.md
+│   ├── test-plan.md
+│   ├── use-cases.md
+│   ├── vision.md
+│   └── decisions/
+│
 ├── frontend/
 ├── backend/
+│
 ├── README.md
-├── .gitignore
-└── LICENSE
+├── LICENSE
+└── .gitignore
 ```
 
-## Puesta en marcha
+---
 
-### Requisitos previos
+# Documentación
 
-Pendiente de completar cuando se definan versiones de Node.js, gestores de paquetes y herramientas de desarrollo.
+La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
-### Ejecucion del frontend
+| Documento | Descripción |
+|-----------|-------------|
+| vision.md | Visión del producto |
+| requirements.md | Requisitos funcionales y no funcionales |
+| business-rules.md | Reglas de negocio |
+| use-cases.md | Casos de uso |
+| architecture.md | Arquitectura del sistema |
+| api-design.md | Diseño de la API |
+| roadmap.md | Plan de desarrollo |
+| test-plan.md | Estrategia de pruebas |
+| glossary.md | Glosario del proyecto |
 
-Pendiente de completar.
+---
 
-### Ejecucion del backend
+# Estado del proyecto
 
-Pendiente de completar.
+Actualmente el proyecto se encuentra en fase de diseño y documentación técnica.
 
-## Documentacion del TFM
+Las siguientes etapas corresponden a:
 
-La documentacion principal se encuentra en `docs/` e incluye vision, requisitos, arquitectura, reglas de negocio, casos de uso, diseno de API, roadmap y glosario.
+- inicialización del frontend;
+- inicialización del backend;
+- implementación del inventario;
+- implementación de la lista de compras;
+- integración con OpenAI;
+- pruebas y validación;
+- elaboración de la memoria del TFM.
 
-## Estado del proyecto
+---
 
-Proyecto inicializado. La implementacion funcional se realizara en iteraciones posteriores.
+# Licencia
 
-## Licencia
-
-Consultar `LICENSE`.
+Este repositorio se distribuye bajo la licencia indicada en `LICENSE`.
