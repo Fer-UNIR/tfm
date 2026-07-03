@@ -16,18 +16,23 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 # 2. Estado actual
 
-**Fase:** Planificación
+**Fase:** Fase 3 — Frontend de inventario
 
 ## Completado
 
-- Definición de la visión del producto.
-- Identificación de requisitos.
-- Definición de reglas de negocio.
-- Casos de uso.
-- Diseño de arquitectura.
-- Diseño preliminar de la API.
-- Configuración inicial del proyecto.
-- Configuración de Cursor (Rules y Skills).
+- Fase 1: base técnica inicial.
+- Backend NestJS inicializado.
+- Frontend Expo + TypeScript inicializado.
+- SQLite configurado.
+- Endpoint `GET /api/v1/health` operativo.
+- Comunicación frontend-backend validada en dispositivo físico.
+- Fase 2: backend de productos.
+- CRUD backend de productos implementado.
+- Contrato REST estabilizado con respuestas `data/meta` y errores `error/meta`.
+- Validaciones, pruebas unitarias y e2e completadas.
+- Registro de deuda técnica creado.
+- Registro de mejoras creado.
+- ADR iniciales creados.
 
 ---
 
@@ -146,8 +151,10 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 | Hito | Estado |
 |-------|--------|
 | Arquitectura aprobada | ✅ |
-| Proyecto inicial | ⬜ |
-| Inventario funcional | ⬜ |
+| Proyecto inicial | ✅ |
+| Backend de productos funcional | ✅ |
+| Frontend de inventario funcional | ⬜ |
+| Inventario funcional completo | ⬜ |
 | Lista de compras funcional | ⬜ |
 | Recetas IA funcionando | ⬜ |
 | Pruebas completadas | ⬜ |
