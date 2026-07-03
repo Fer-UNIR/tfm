@@ -318,7 +318,7 @@ Se considerará completado un requisito cuando:
 | Requisito | Caso de uso | API | Test |
 |------------|------------|-----|------|
 | RF-001 | UC-001 | POST /products | ✅ |
-| RF-002 | UC-002 | PUT /products/{id} | ✅ |
+| RF-002 | UC-002 | PATCH /products/{id} | ✅ |
 | RF-003 | UC-003 | DELETE /products/{id} | ✅ |
 | RF-004 | UC-004 | PATCH /inventory | ✅ |
 | ... | ... | ... | ... |

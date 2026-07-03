@@ -111,15 +111,22 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
 # Estado del proyecto
 
-Actualmente el proyecto se encuentra en **Fase 1 (base técnica inicial)**:
+Actualmente el proyecto se encuentra en **Fase 2 (gestion de inventario - backend de productos)**:
 
 - backend NestJS inicializado;
 - frontend Expo + TypeScript inicializado;
 - endpoint `GET /api/v1/health` disponible;
+- CRUD base de productos en backend:
+  - `GET /api/v1/products`
+  - `GET /api/v1/products/:id`
+  - `POST /api/v1/products`
+  - `PATCH /api/v1/products/:id`
+  - `DELETE /api/v1/products/:id`
+- contrato de errores REST estabilizado con formato uniforme `error/meta` para `400`, `404`, `409` y `500`;
 - configuración básica de SQLite en backend;
 - pantalla inicial móvil preparada para consumir backend.
 
-En esta fase **no** se implementa aún lógica completa de inventario, compras ni recetas IA.
+En esta fase **no** se implementa aún frontend de inventario, lista de compras ni integración de recetas IA.
 
 ---
 
@@ -143,6 +150,35 @@ Health check:
 
 ```bash
 curl http://localhost:3000/api/v1/health
+```
+
+Ejemplo rápido de alta de producto:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Arroz",
+    "category": "Despensa",
+    "quantity": 1,
+    "unit": "kg",
+    "minimumStock": 1
+  }'
+```
+
+Ejemplo de respuesta de error (producto duplicado):
+
+```json
+{
+  "error": {
+    "code": "DUPLICATE_RESOURCE",
+    "message": "A product with the same name and category already exists.",
+    "details": ["name", "category"]
+  },
+  "meta": {
+    "timestamp": "2026-01-01T12:00:00.000Z"
+  }
+}
 ```
 
 Variables de entorno de ejemplo:

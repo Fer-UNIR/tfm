@@ -94,6 +94,12 @@ Esto permitirá introducir cambios futuros sin romper contratos existentes.
 }
 ```
 
+### Notas de contrato de error
+
+- Todas las respuestas de error del backend usan el mismo formato `error/meta`.
+- `details` se utiliza para incluir lista de errores de validación o pistas de conflicto.
+- Códigos mínimos estabilizados para esta fase: `VALIDATION_ERROR`, `NOT_FOUND`, `DUPLICATE_RESOURCE`, `INTERNAL_ERROR`.
+
 ---
 
 # 6. Códigos de error
@@ -129,10 +135,9 @@ Representa un alimento registrado por el usuario.
 
 ```json
 {
-  "id": "uuid",
+  "id": 1,
   "name": "Arroz",
-  "categoryId": "uuid",
-  "categoryName": "Despensa",
+  "category": "Despensa",
   "quantity": 1,
   "unit": "kg",
   "minimumStock": 1,
@@ -218,7 +223,8 @@ Permite verificar que el backend está disponible.
 ```json
 {
   "data": {
-    "status": "ok"
+    "status": "ok",
+    "database": "up"
   },
   "meta": {
     "timestamp": "2026-01-01T12:00:00.000Z"
@@ -240,10 +246,9 @@ Obtiene todos los productos registrados.
 {
   "data": [
     {
-      "id": "uuid",
+      "id": 1,
       "name": "Arroz",
-      "categoryId": "uuid",
-      "categoryName": "Despensa",
+      "category": "Despensa",
       "quantity": 1,
       "unit": "kg",
       "minimumStock": 1,
@@ -269,10 +274,9 @@ Obtiene un producto por identificador.
 ```json
 {
   "data": {
-    "id": "uuid",
+    "id": 1,
     "name": "Arroz",
-    "categoryId": "uuid",
-    "categoryName": "Despensa",
+    "category": "Despensa",
     "quantity": 1,
     "unit": "kg",
     "minimumStock": 1,
@@ -296,7 +300,7 @@ Registra un nuevo producto.
 ```json
 {
   "name": "Arroz",
-  "categoryId": "uuid",
+  "category": "Despensa",
   "quantity": 1,
   "unit": "kg",
   "minimumStock": 1
@@ -306,21 +310,25 @@ Registra un nuevo producto.
 ### Validaciones
 
 - `name` obligatorio.
-- `categoryId` obligatorio.
+- `category` obligatorio.
 - `quantity` debe ser mayor o igual a 0.
 - `unit` obligatorio.
 - `minimumStock` opcional, pero si existe debe ser mayor o igual a 0.
 - no debe existir otro producto con el mismo nombre y categoría.
+
+### Errores relevantes
+
+- `400 VALIDATION_ERROR` cuando el payload no cumple DTO.
+- `409 DUPLICATE_RESOURCE` cuando ya existe un producto con el mismo `name` y `category`.
 
 ### Respuesta 201
 
 ```json
 {
   "data": {
-    "id": "uuid",
+    "id": 1,
     "name": "Arroz",
-    "categoryId": "uuid",
-    "categoryName": "Despensa",
+    "category": "Despensa",
     "quantity": 1,
     "unit": "kg",
     "minimumStock": 1,
@@ -335,7 +343,7 @@ Registra un nuevo producto.
 
 ---
 
-## PUT `/products/{id}`
+## PATCH `/products/{id}`
 
 Actualiza un producto existente.
 
@@ -344,22 +352,32 @@ Actualiza un producto existente.
 ```json
 {
   "name": "Arroz integral",
-  "categoryId": "uuid",
+  "category": "Despensa",
   "quantity": 2,
   "unit": "kg",
   "minimumStock": 1
 }
 ```
 
+### Reglas
+
+- Debe enviarse al menos un campo de actualización.
+- Si el body llega vacío (`{}`), la API responde `400 VALIDATION_ERROR`.
+
+### Errores relevantes
+
+- `400 VALIDATION_ERROR` para payload inválido o vacío.
+- `404 NOT_FOUND` si el producto no existe.
+- `409 DUPLICATE_RESOURCE` si la actualización provoca duplicado por `name + category`.
+
 ### Respuesta 200
 
 ```json
 {
   "data": {
-    "id": "uuid",
+    "id": 1,
     "name": "Arroz integral",
-    "categoryId": "uuid",
-    "categoryName": "Despensa",
+    "category": "Despensa",
     "quantity": 2,
     "unit": "kg",
     "minimumStock": 1,
@@ -593,12 +611,12 @@ Obtiene productos bajo stock.
 {
   "data": [
     {
-      "id": "uuid",
+      "id": 1,
       "name": "Arroz",
       "quantity": 1,
       "unit": "kg",
       "minimumStock": 1,
-      "categoryName": "Despensa"
+      "category": "Despensa"
     }
   ],
   "meta": {
@@ -710,7 +728,7 @@ Las recetas no se almacenan en el MVP.
 ```ts
 {
   name: string;
-  categoryId: string;
+  category: string;
   quantity: number;
   unit: string;
   minimumStock?: number;
@@ -721,10 +739,10 @@ Las recetas no se almacenan en el MVP.
 
 ```ts
 {
-  name: string;
-  categoryId: string;
-  quantity: number;
-  unit: string;
+  name?: string;
+  category?: string;
+  quantity?: number;
+  unit?: string;
   minimumStock?: number;
 }
 ```
@@ -776,7 +794,7 @@ Las recetas no se almacenan en el MVP.
 | GET /products | RF-005 |
 | GET /products/{id} | RF-005 |
 | POST /products | RF-001 |
-| PUT /products/{id} | RF-002 |
+| PATCH /products/{id} | RF-002 |
 | DELETE /products/{id} | RF-003 |
 | PATCH /inventory/products/{id}/quantity | RF-004 |
 | GET /inventory/low-stock | RF-014 |
@@ -796,4 +814,4 @@ Las recetas no se almacenan en el MVP.
 | Autenticación | Fuera del MVP |
 | Historial de compras | Fuera del MVP |
 | Sincronización remota | Trabajo futuro |
-| Formato exacto de errores de validación | Pendiente |
+| Formato exacto de errores de validación | Resuelto en Sprint 2.5 |

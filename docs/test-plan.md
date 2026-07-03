@@ -190,7 +190,7 @@ RN-INV-001, RN-INV-002, RN-INV-003, RN-INV-004, RN-INV-005, RN-STK-001, RN-STK-0
 - `POST /products`
 - `GET /products`
 - `GET /products/{id}`
-- `PUT /products/{id}`
+- `PATCH /products/{id}`
 - `DELETE /products/{id}`
 - `PATCH /inventory/products/{id}/quantity`
 - `GET /inventory/low-stock`
