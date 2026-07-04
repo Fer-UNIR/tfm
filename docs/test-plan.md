@@ -152,6 +152,19 @@ npm run typecheck
 npm run test
 ```
 
+Comandos usados para validar Fase 4 (lista de compras):
+
+```bash
+cd backend
+npm run test
+npm run test:e2e
+npm run build
+
+cd ../frontend
+npm run typecheck
+npm run test
+```
+
 ---
 
 # 7. Criterios generales de aceptación
@@ -179,10 +192,10 @@ Una funcionalidad se considerará validada cuando:
 
 RF-001, RF-002, RF-003, RF-004, RF-005, RF-006, RF-007, RF-013, RF-014
 
-Estado al cierre de Fase 3:
+Estado al cierre de Fase 4:
 
 - Implementados y validados en código: RF-001, RF-002, RF-003, RF-004, RF-005.
-- Implementados de forma parcial en frontend: RF-013 y RF-014 (stock mínimo y badge de bajo stock sobre datos de `products`).
+- Implementados y validados para operación del MVP: RF-013 y RF-014 (stock mínimo en `products`, badge de bajo stock en inventario y sincronización de compras desde bajo stock).
 - Pendientes para fases siguientes: RF-006 y RF-007 (filtro y búsqueda explícitos).
 
 ## Reglas relacionadas
@@ -240,6 +253,14 @@ Pruebas e2e planificadas para fases siguientes:
 
 RF-008, RF-009, RF-010, RF-011, RF-012
 
+Estado al cierre de Fase 4:
+
+- Implementados y validados en código: RF-008, RF-009, RF-010, RF-011 y RF-012.
+- Cobertura automatizada:
+  - pruebas unitarias de `ShoppingListService`;
+  - pruebas e2e de endpoints `shopping-list`;
+  - pruebas de componente de `ShoppingListScreen`.
+
 ## Reglas relacionadas
 
 RN-SHOP-001, RN-SHOP-002, RN-SHOP-003, RN-SHOP-004, RN-SHOP-005, RN-SHOP-006, RN-SHOP-007
@@ -263,10 +284,13 @@ RN-SHOP-001, RN-SHOP-002, RN-SHOP-003, RN-SHOP-004, RN-SHOP-005, RN-SHOP-006, RN
 
 ## Pruebas frontend
 
+- Navegación básica entre inventario y compras.
 - Mostrar lista vacía.
-- Agregar producto a la lista.
+- Agregar producto a la lista mediante selección de producto.
 - Agregar productos bajo stock.
+- Agregar producto individual desde bajo stock.
 - Marcar producto como comprado.
+- Marcar todos los pendientes como comprados.
 - Eliminar producto de la lista.
 - Mostrar errores de validación.
 
@@ -327,6 +351,27 @@ RN-AI-001, RN-AI-002, RN-AI-003, RN-AI-004, RN-AI-005, RN-AI-006, RN-AI-007, RN-
 
 ---
 
+# 8.4 Refinamiento funcional y experiencia de usuario (Fase 6)
+
+## Requisitos no funcionales relacionados
+
+RNF-002, RNF-009, RNF-010
+
+## Objetivo de validación
+
+Comprobar de forma manual y sistemática que los flujos implementados del MVP se mantienen usables, consistentes y demostrables para defensa, sin introducir nuevas funcionalidades de negocio.
+
+## Validación manual esperada
+
+| Flujo | Resultado esperado |
+|---|---|
+| Navegar inventario → compras → inventario | Navegación clara, sin pasos redundantes |
+| Completar ciclo inventario → compras → receta | Flujo continuo, mensajes comprensibles y estados correctos |
+| Revisar estados vacíos/carga/error en pantallas clave | Mensajes consistentes y orientados a acción |
+| Revisar consistencia visual y accesibilidad básica | Componentes homogéneos, textos legibles y acciones detectables |
+
+---
+
 # 9. Evidencia para el TFM
 
 Durante la validación se recopilarán:
@@ -347,6 +392,19 @@ Evidencia esperada para cierre de Fase 3:
   - vacío;
   - listado con badge de bajo stock;
   - error de API.
+
+Evidencia añadida en Fase 4:
+
+- salida de `npm run test` y `npm run test:e2e` en backend con pruebas de lista de compras en verde;
+- salida de `npm run typecheck` y `npm run test` en frontend con `ShoppingListScreen` en verde;
+- validación funcional de:
+  - navegar entre inventario y compras;
+  - agregar manualmente productos desde selección;
+  - sincronizar desde bajo stock;
+  - agregar producto individual desde bajo stock;
+  - marcar producto como comprado y actualizar inventario;
+  - marcar todos los pendientes como comprados;
+  - eliminar producto de lista.
 
 ---
 
@@ -382,4 +440,8 @@ Estado actual de validación por fase:
 - Fase 3 (frontend de inventario): **validable y ejecutable** con:
   - pruebas de componente de `InventoryScreen`;
   - `npm run typecheck` en frontend.
-- Fase 4 (lista de compras): pendiente.
+- Fase 4 (lista de compras): **validada** con unitarias, e2e y pruebas de componente.
+- Fase 5 (recetas con IA): pendiente de implementación y validación.
+- Fase 6 (refinamiento funcional y experiencia de usuario): planificada para consolidar UX del MVP mediante validación manual y mejoras de interacción, sin ampliar reglas de negocio.
+- Fase 7 (calidad): planificada tras el refinamiento funcional para estabilización integral.
+- Fase 8 (documentación del TFM): planificada para cierre académico y evidencia final.

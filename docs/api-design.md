@@ -163,8 +163,8 @@ Representa un alimento registrado por el usuario.
 
 ```json
 {
-  "id": "uuid",
-  "productId": "uuid",
+  "id": 1,
+  "productId": 1,
   "productName": "Arroz",
   "quantity": 1,
   "unit": "kg",
@@ -212,10 +212,11 @@ La respuesta de generación de receta será efímera y dependerá del inventario
 
 # 9. Endpoints
 
-Estado de implementación al cierre de Fase 3:
+Estado de implementación al cierre de Fase 4:
 
-- Implementados en backend: `GET /health` y CRUD de `products`.
-- Planificados para fases posteriores: categorías, lista de compras, endpoints específicos de inventario y recetas IA.
+- Implementados en backend: `GET /health`, CRUD de `products` y endpoints de `shopping-list`.
+- RF-014 (detección de bajo stock) se cubre en Fase 4 mediante lógica sobre `products` y el endpoint `POST /shopping-list/items/from-low-stock`.
+- Planificados para fases posteriores: categorías, endpoints específicos de inventario y recetas IA.
 
 # 9.1 Health (Implementado)
 
@@ -409,7 +410,7 @@ Sin contenido.
 
 # 9.3 Categorías (Planificado)
 
-> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 4.
 
 ## GET `/categories`
 
@@ -470,9 +471,9 @@ Crea una categoría.
 
 ---
 
-# 9.4 Lista de compras (Planificado)
+# 9.4 Lista de compras (Implementado)
 
-> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
+> Estos endpoints están implementados en backend al cierre de Fase 4.
 
 ## GET `/shopping-list`
 
@@ -484,8 +485,8 @@ Obtiene los productos pendientes de compra.
 {
   "data": [
     {
-      "id": "uuid",
-      "productId": "uuid",
+      "id": 1,
+      "productId": 1,
       "productName": "Arroz",
       "quantity": 1,
       "unit": "kg",
@@ -510,7 +511,7 @@ Agrega un producto a la lista de compras.
 
 ```json
 {
-  "productId": "uuid",
+  "productId": 1,
   "quantity": 1,
   "unit": "kg"
 }
@@ -522,13 +523,18 @@ Agrega un producto a la lista de compras.
 - Si el producto ya existe en la lista activa, se actualiza la cantidad.
 - No se deben crear duplicados.
 
+### Errores relevantes
+
+- `400 VALIDATION_ERROR` cuando `productId` o `quantity` no son válidos.
+- `404 NOT_FOUND` cuando el producto no existe en inventario.
+
 ### Respuesta 201
 
 ```json
 {
   "data": {
-    "id": "uuid",
-    "productId": "uuid",
+    "id": 1,
+    "productId": 1,
     "productName": "Arroz",
     "quantity": 1,
     "unit": "kg",
@@ -579,15 +585,20 @@ Marca un producto como comprado y actualiza el inventario.
 
 - `purchasedQuantity` debe ser mayor que 0.
 - Al confirmar la compra, la cantidad comprada se suma al inventario.
-- El elemento queda marcado como comprado o se elimina de la lista activa según la decisión de implementación.
+- El elemento queda marcado como comprado y deja de aparecer en la lista activa (`GET /shopping-list` solo devuelve `pending`).
+
+### Errores relevantes
+
+- `400 VALIDATION_ERROR` cuando `purchasedQuantity` no es válido.
+- `404 NOT_FOUND` cuando el item de compra no existe o el producto asociado no está disponible.
 
 ### Respuesta 200
 
 ```json
 {
   "data": {
-    "shoppingItemId": "uuid",
-    "productId": "uuid",
+    "shoppingItemId": 1,
+    "productId": 1,
     "newInventoryQuantity": 3
   },
   "meta": {
@@ -610,7 +621,7 @@ Sin contenido.
 
 # 9.5 Inventario (Planificado)
 
-> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 4.
 
 ## GET `/inventory/low-stock`
 
@@ -676,7 +687,7 @@ Actualiza la cantidad disponible de un producto.
 
 # 9.6 Recetas IA (Planificado)
 
-> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 4.
 
 ## POST `/recipes/generate`
 
@@ -772,7 +783,7 @@ Las recetas no se almacenan en el MVP.
 
 ```ts
 {
-  productId: string;
+  productId: number;
   quantity: number;
   unit: string;
 }
@@ -809,11 +820,13 @@ Las recetas no se almacenan en el MVP.
 | POST /products | RF-001 | Implementado |
 | PATCH /products/{id} | RF-002, RF-004, RF-013 | Implementado |
 | DELETE /products/{id} | RF-003 | Implementado |
+| GET /shopping-list | RF-008 | Implementado |
+| POST /shopping-list/items | RF-009 | Implementado |
+| POST /shopping-list/items/from-low-stock | RF-010 | Implementado |
+| PATCH /shopping-list/items/{id}/purchase | RF-011, RF-012 | Implementado |
+| DELETE /shopping-list/items/{id} | RF-008 | Implementado |
 | PATCH /inventory/products/{id}/quantity | RF-004 | Planificado |
 | GET /inventory/low-stock | RF-014 | Planificado |
-| POST /shopping-list/items | RF-009 | Planificado |
-| POST /shopping-list/items/from-low-stock | RF-010 | Planificado |
-| PATCH /shopping-list/items/{id}/purchase | RF-011, RF-012 | Planificado |
 | POST /recipes/generate | RF-015, RF-016, RF-017 | Planificado |
 
 ---

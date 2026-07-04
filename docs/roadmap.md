@@ -16,7 +16,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 # 2. Estado actual
 
-**Fase:** Fase 4 — Lista de compras
+**Fase:** Fase 5 — Recetas con IA
 
 ## Completado
 
@@ -39,6 +39,22 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 - Alta simple, edición de cantidad y eliminación de productos en frontend.
 - Indicador visual de bajo stock implementado.
 - Pruebas de componente de inventario ejecutables con React Native Testing Library.
+- Fase 4: lista de compras.
+- `ShoppingListModule` implementado en backend con patrón `Controller -> Service -> Repository`.
+- Endpoints REST de compras implementados y validados:
+  - `GET /shopping-list`
+  - `POST /shopping-list/items`
+  - `POST /shopping-list/items/from-low-stock`
+  - `PATCH /shopping-list/items/{id}/purchase`
+  - `DELETE /shopping-list/items/{id}`
+- Regla RN-SHOP-004 aplicada (sin duplicados activos: actualización de cantidad).
+- Compra registrada impacta inventario (`RF-012`).
+- Navegación básica entre `InventoryScreen` y `ShoppingListScreen` implementada para demo.
+- Pantalla `ShoppingListScreen` implementada en frontend con estados y acciones principales.
+- Alta manual de compras basada en selección de producto existente (sin ingreso manual de ID).
+- Agregado individual por producto en sección de bajo stock.
+- Compra masiva "marcar todos como comprados" con resumen de resultados.
+- Pruebas unitarias/e2e backend y pruebas de componente frontend de compras en verde.
 
 ---
 
@@ -67,13 +83,10 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ### Objetivos
 
-- Crear categorías.
 - Registrar productos.
 - Editar productos.
 - Eliminar productos.
 - Consultar inventario.
-- Buscar productos.
-- Filtrar por categoría.
 - Actualizar cantidades.
 - Configurar stock mínimo.
 
@@ -137,7 +150,37 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 6 — Calidad
+## Fase 6 — Refinamiento funcional y experiencia de usuario
+
+### Objetivos
+
+- Revisar todos los flujos completos de la aplicación.
+- Detectar problemas de usabilidad.
+- Mejorar navegación entre pantallas.
+- Reducir pasos innecesarios.
+- Mejorar mensajes de éxito y error.
+- Mejorar estados vacíos y estados de carga.
+- Mejorar consistencia visual.
+- Refinar componentes reutilizables.
+- Revisar accesibilidad básica.
+- Validar la experiencia completa de uso desde el inventario hasta la generación de recetas.
+- Documentar todas las mejoras realizadas y su justificación.
+
+### Requisitos no funcionales relacionados
+
+- RNF-002 (interfaz intuitiva).
+- RNF-009 (mantenibilidad y claridad del producto).
+- RNF-010 (validabilidad mediante pruebas y revisión sistemática).
+
+### Entregables
+
+- MVP completamente refinado desde el punto de vista funcional y de experiencia de usuario.
+- Lista documentada de mejoras aplicadas.
+- Flujo completo validado manualmente.
+
+---
+
+## Fase 7 — Calidad
 
 ### Objetivos
 
@@ -153,7 +196,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 7 — Documentación del TFM
+## Fase 8 — Documentación del TFM
 
 ### Objetivos
 
@@ -180,9 +223,10 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 | Proyecto inicial | ✅ |
 | Backend de productos funcional | ✅ |
 | Frontend de inventario funcional | ✅ |
-| Inventario funcional completo | ⬜ |
-| Lista de compras funcional | ⬜ |
+| Inventario funcional completo | ✅ |
+| Lista de compras funcional | ✅ |
 | Recetas IA funcionando | ⬜ |
+| Refinamiento funcional y UX completado | ⬜ |
 | Pruebas completadas | ⬜ |
 | MVP finalizado | ⬜ |
 | Memoria finalizada | ⬜ |

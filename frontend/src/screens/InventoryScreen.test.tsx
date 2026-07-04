@@ -46,7 +46,7 @@ describe('InventoryScreen', () => {
     mockedFetchProducts.mockImplementationOnce(
       () =>
         new Promise<Product[]>((resolve) => {
-          setTimeout(() => resolve([]), 0);
+          setTimeout(() => resolve([]), 50);
         }),
     );
 

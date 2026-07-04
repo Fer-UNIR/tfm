@@ -115,7 +115,7 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
 # Estado del proyecto
 
-Actualmente el proyecto se encuentra en **Fase 4: lista de compras**.
+Actualmente el proyecto se encuentra en **Fase 5: recetas con IA (en preparación)**.
 
 - backend NestJS inicializado;
 - frontend Expo + TypeScript inicializado;
@@ -136,12 +136,38 @@ Actualmente el proyecto se encuentra en **Fase 4: lista de compras**.
   - eliminación de producto;
   - indicador de bajo stock (`quantity <= minimumStock`);
   - pruebas de componente para `InventoryScreen` con React Native Testing Library.
+- **Fase 4 lista de compras completada**:
+  - módulo backend `ShoppingListModule` con arquitectura `Controller -> Service -> Repository`;
+  - endpoints implementados:
+    - `GET /api/v1/shopping-list`
+    - `POST /api/v1/shopping-list/items`
+    - `POST /api/v1/shopping-list/items/from-low-stock`
+    - `PATCH /api/v1/shopping-list/items/:id/purchase`
+    - `DELETE /api/v1/shopping-list/items/:id`
+  - regla de no duplicados en lista activa (si existe item pendiente, se actualiza su cantidad);
+  - al marcar compra, se incrementa inventario en `products.quantity`;
+  - navegación básica frontend entre `InventoryScreen` y `ShoppingListScreen` sin librerías adicionales;
+  - pantalla `ShoppingListScreen` en frontend con estados de carga, vacío y error;
+  - operaciones frontend:
+    - alta manual con selección de producto existente;
+    - sincronización completa desde bajo stock;
+    - agregado individual desde bajo stock;
+    - marcar compra individual;
+    - marcar todos los pendientes como comprados (resumen de éxito/error parcial);
+    - eliminación de item;
+  - pruebas unitarias/e2e de backend y pruebas de componente frontend para compras.
 
-El foco actual de implementación es **Fase 4: lista de compras**.
+El foco actual de implementación pasa a **Fase 5: recetas con IA**.
+
+Roadmap actualizado:
+
+- **Fase 6**: refinamiento funcional y experiencia de usuario (sin nuevas reglas de negocio).
+- **Fase 7**: calidad.
+- **Fase 8**: documentación del TFM.
 
 ---
 
-# Puesta en marcha (Fase 1)
+# Puesta en marcha local
 
 ## Requisitos previos
 
@@ -218,7 +244,7 @@ cp .env.example .env
 
 - `EXPO_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1`
 
-Con backend y frontend levantados, la aplicación móvil muestra la `InventoryScreen` y consume el CRUD de productos del backend.
+Con backend y frontend levantados, la aplicación móvil permite alternar entre `InventoryScreen` y `ShoppingListScreen` de Fase 4 y consume tanto `products` como `shopping-list`.
 
 ---
 

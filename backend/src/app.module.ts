@@ -5,9 +5,10 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { HealthModule } from './health/health.module';
 import { PersistenceModule } from './persistence/persistence.module';
 import { ProductsModule } from './products/products.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 @Module({
-  imports: [PersistenceModule, HealthModule, ProductsModule],
+  imports: [PersistenceModule, HealthModule, ProductsModule, ShoppingListModule],
   providers: [
     {
       provide: APP_FILTER,

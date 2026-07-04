@@ -321,4 +321,16 @@ Se considerará completado un requisito cuando:
 | RF-002 | UC-002 | PATCH /products/{id} | ✅ |
 | RF-003 | UC-003 | DELETE /products/{id} | ✅ |
 | RF-004 | UC-004 | PATCH /products/{id} | ✅ |
-| ... | ... | ... | ... |
+| RF-005 | UC-005 | GET /products, GET /products/{id} | ✅ |
+| RF-008 | UC-006 | GET /shopping-list | ✅ |
+| RF-009 | UC-006 | POST /shopping-list/items | ✅ |
+| RF-010 | UC-006 | POST /shopping-list/items/from-low-stock | ✅ |
+| RF-011 | UC-007 | PATCH /shopping-list/items/{id}/purchase | ✅ |
+| RF-012 | UC-007 | PATCH /shopping-list/items/{id}/purchase | ✅ |
+| RF-013 | UC-004 | PATCH /products/{id} (`minimumStock`) | ✅ |
+| RF-014 | UC-004/UC-006 | Detección en frontend + POST /shopping-list/items/from-low-stock | ✅ |
+| RF-015 | UC-008 | POST /recipes/generate | ⬜ |
+| RF-016 | UC-008 | POST /recipes/generate (regenerar) | ⬜ |
+| RF-017 | UC-008 | POST /recipes/generate | ⬜ |
+| RF-018 | UC-001..UC-007 | SQLite (`products`, `shopping_list_items`) | ✅ |
+| RF-019 | UC-005, UC-006 | Recuperación persistida en backend | ✅ |
