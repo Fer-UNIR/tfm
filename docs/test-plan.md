@@ -121,9 +121,9 @@ Aplicará especialmente a:
 
 ---
 
-# 6. Comandos previstos
+# 6. Comandos de validación actuales
 
-Los comandos concretos se confirmarán cuando se inicialicen los proyectos `backend` y `frontend`.
+Los siguientes comandos ya se utilizan en el repositorio y forman parte de la validación reproducible del MVP.
 
 ## Backend
 
@@ -138,10 +138,18 @@ npm run build
 ## Frontend
 
 ```bash
+npm install
 npm test
-npm run lint
 npm run typecheck
 npx expo start
+```
+
+Comandos usados para cerrar Fase 3 (frontend de inventario):
+
+```bash
+cd frontend
+npm run typecheck
+npm run test
 ```
 
 ---
@@ -200,10 +208,11 @@ RN-INV-001, RN-INV-002, RN-INV-003, RN-INV-004, RN-INV-005, RN-STK-001, RN-STK-0
 - Mostrar inventario vacío.
 - Mostrar lista de productos.
 - Agregar producto.
-- Editar producto.
+- Editar cantidad de producto.
 - Eliminar producto.
-- Mostrar errores de validación.
+- Mostrar error de API.
 - Mostrar productos bajo stock.
+- Verificar estado de carga inicial.
 
 ## Validación manual
 
@@ -320,6 +329,16 @@ Durante la validación se recopilarán:
 - errores detectados y corregidos;
 - limitaciones conocidas.
 
+Evidencia esperada para cierre de Fase 3:
+
+- salida de `npm run typecheck` sin errores;
+- salida de `npm run test` en frontend con pruebas de `InventoryScreen` en verde;
+- evidencia visual de estados clave de inventario:
+  - carga;
+  - vacío;
+  - listado con badge de bajo stock;
+  - error de API.
+
 ---
 
 # 10. Matriz de trazabilidad
@@ -345,8 +364,13 @@ Durante la validación se recopilarán:
 
 ---
 
-# 12. Estado inicial
+# 12. Estado del plan
 
-El plan de pruebas se encuentra en estado inicial.
+Estado actual de validación por fase:
 
-Será actualizado a medida que se implementen los módulos y se definan los comandos reales de ejecución.
+- Fase 1 (base técnica): validada.
+- Fase 2 (backend de productos): validada con unitarias y e2e.
+- Fase 3 (frontend de inventario): **validable y ejecutable** con:
+  - pruebas de componente de `InventoryScreen`;
+  - `npm run typecheck` en frontend.
+- Fase 4 (lista de compras): pendiente.

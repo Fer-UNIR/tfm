@@ -49,6 +49,9 @@ Cada mejora debe incluir:
 |---|---|---|---|---|---|---|---|
 | FI-001 | 2026-07-03 | Products API | Validar que los IDs de rutas sean mayores que cero y responder `400 Bad Request` en lugar de `404 Not Found` cuando el valor sea inválido. | Contrato HTTP más preciso y validaciones más robustas. | Baja | Pendiente | No afecta el funcionamiento actual del MVP. |
 | FI-002 | 2026-07-03 | Products API | Evaluar que la restricción de unicidad `name + category` sea insensible a mayúsculas y minúsculas (`Arroz` = `arroz`). | Evitar duplicados semánticos y mejorar la consistencia del inventario. | Baja | Pendiente | Requiere definir regla de negocio antes de implementarlo. |
+| FI-003 | 2026-07-04 | Frontend Inventario | Solicitar confirmación antes de eliminar un producto para evitar eliminaciones accidentales. | Mejor experiencia de usuario y menor riesgo de errores. | Media | Pendiente | Puede implementarse mediante un diálogo de confirmación nativo. |
+| FI-004 | 2026-07-04 | Frontend Inventario | Sustituir `SafeAreaView` de React Native por `react-native-safe-area-context` para eliminar el warning de deprecación y alinearse con las recomendaciones actuales. | Mejor mantenibilidad y compatibilidad con versiones futuras de React Native. | Baja | Pendiente | No afecta el funcionamiento actual del MVP. |
+| FI-005 | 2026-07-04 | Frontend Inventario | Ordenar automáticamente el listado de productos por nombre antes de mostrarlo. | Facilita localizar productos en inventarios grandes. | Baja | Pendiente | El ordenamiento puede realizarse en frontend sin modificar el contrato de la API. |
 
 ---
 
@@ -56,7 +59,7 @@ Cada mejora debe incluir:
 
 | Estado | Cantidad |
 |---|---:|
-| Pendiente | 2 |
+| Pendiente | 5 |
 | En progreso | 0 |
 | Implementada | 0 |
 | Descartada | 0 |

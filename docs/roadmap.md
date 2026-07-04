@@ -16,7 +16,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 # 2. Estado actual
 
-**Fase:** Fase 3 — Frontend de inventario
+**Fase:** Fase 4 — Lista de compras
 
 ## Completado
 
@@ -33,6 +33,12 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 - Registro de deuda técnica creado.
 - Registro de mejoras creado.
 - ADR iniciales creados.
+- Fase 3: frontend de inventario.
+- Pantalla `InventoryScreen` conectada al CRUD de `products`.
+- Estados de carga, vacío y error implementados.
+- Alta simple, edición de cantidad y eliminación de productos en frontend.
+- Indicador visual de bajo stock implementado.
+- Pruebas de componente de inventario ejecutables con React Native Testing Library.
 
 ---
 
@@ -57,7 +63,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 2 — Gestión de inventario
+## Fase 2 — Backend de productos
 
 ### Objetivos
 
@@ -77,7 +83,27 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 3 — Lista de compras
+## Fase 3 — Frontend de inventario
+
+### Objetivos
+
+- Consumir desde móvil el backend de productos ya implementado.
+- Mostrar listado y estado vacío de inventario.
+- Gestionar estados de carga y error en interfaz.
+- Permitir crear producto, editar cantidad y eliminar producto.
+- Mostrar indicador de bajo stock en productos aplicables.
+- Incorporar validación automatizada mínima de la pantalla de inventario.
+
+### Entregables
+
+- Pantalla móvil de inventario funcional.
+- Servicio API frontend de productos.
+- Tipos TypeScript de dominio/API para `Product`.
+- Suite de tests de componente para `InventoryScreen`.
+
+---
+
+## Fase 4 — Lista de compras
 
 ### Objetivos
 
@@ -94,7 +120,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 4 — Recetas con IA
+## Fase 5 — Recetas con IA
 
 ### Objetivos
 
@@ -111,7 +137,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 5 — Calidad
+## Fase 6 — Calidad
 
 ### Objetivos
 
@@ -127,7 +153,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 6 — Documentación del TFM
+## Fase 7 — Documentación del TFM
 
 ### Objetivos
 
@@ -153,7 +179,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 | Arquitectura aprobada | ✅ |
 | Proyecto inicial | ✅ |
 | Backend de productos funcional | ✅ |
-| Frontend de inventario funcional | ⬜ |
+| Frontend de inventario funcional | ✅ |
 | Inventario funcional completo | ⬜ |
 | Lista de compras funcional | ⬜ |
 | Recetas IA funcionando | ⬜ |

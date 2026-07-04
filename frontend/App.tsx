@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { HomeScreen } from './src/screens/HomeScreen';
+import { InventoryScreen } from './src/screens/InventoryScreen';
 
 export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <HomeScreen />
+      <InventoryScreen />
     </>
   );
 }

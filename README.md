@@ -111,7 +111,7 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
 # Estado del proyecto
 
-Actualmente el proyecto se encuentra en **Fase 2 (gestion de inventario - backend de productos)**:
+Actualmente el proyecto se encuentra en **Fase 4: lista de compras**.
 
 - backend NestJS inicializado;
 - frontend Expo + TypeScript inicializado;
@@ -124,9 +124,16 @@ Actualmente el proyecto se encuentra en **Fase 2 (gestion de inventario - backen
   - `DELETE /api/v1/products/:id`
 - contrato de errores REST estabilizado con formato uniforme `error/meta` para `400`, `404`, `409` y `500`;
 - configuración básica de SQLite en backend;
-- pantalla inicial móvil preparada para consumir backend.
+- **Fase 3 frontend de inventario completada**:
+  - pantalla móvil de inventario conectada a `products`;
+  - estados de carga, vacío y error;
+  - alta de producto simple;
+  - edición de cantidad (`+1` / `-1`);
+  - eliminación de producto;
+  - indicador de bajo stock (`quantity <= minimumStock`);
+  - pruebas de componente para `InventoryScreen` con React Native Testing Library.
 
-En esta fase **no** se implementa aún frontend de inventario, lista de compras ni integración de recetas IA.
+La siguiente fase de implementación es **Fase 4: lista de compras**.
 
 ---
 
