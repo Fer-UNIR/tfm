@@ -320,5 +320,5 @@ Se considerará completado un requisito cuando:
 | RF-001 | UC-001 | POST /products | ✅ |
 | RF-002 | UC-002 | PATCH /products/{id} | ✅ |
 | RF-003 | UC-003 | DELETE /products/{id} | ✅ |
-| RF-004 | UC-004 | PATCH /inventory | ✅ |
+| RF-004 | UC-004 | PATCH /products/{id} | ✅ |
 | ... | ... | ... | ... |

@@ -1,7 +1,7 @@
 # Registro de mejoras
 
 Proyecto: SmartPantry-TFM  
-Última actualización: 2026-07-03
+Última actualización: 2026-07-04
 
 ---
 

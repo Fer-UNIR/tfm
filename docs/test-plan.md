@@ -179,6 +179,12 @@ Una funcionalidad se considerará validada cuando:
 
 RF-001, RF-002, RF-003, RF-004, RF-005, RF-006, RF-007, RF-013, RF-014
 
+Estado al cierre de Fase 3:
+
+- Implementados y validados en código: RF-001, RF-002, RF-003, RF-004, RF-005.
+- Implementados de forma parcial en frontend: RF-013 y RF-014 (stock mínimo y badge de bajo stock sobre datos de `products`).
+- Pendientes para fases siguientes: RF-006 y RF-007 (filtro y búsqueda explícitos).
+
 ## Reglas relacionadas
 
 RN-INV-001, RN-INV-002, RN-INV-003, RN-INV-004, RN-INV-005, RN-STK-001, RN-STK-002
@@ -200,6 +206,9 @@ RN-INV-001, RN-INV-002, RN-INV-003, RN-INV-004, RN-INV-005, RN-STK-001, RN-STK-0
 - `GET /products/{id}`
 - `PATCH /products/{id}`
 - `DELETE /products/{id}`
+
+Pruebas e2e planificadas para fases siguientes:
+
 - `PATCH /inventory/products/{id}/quantity`
 - `GET /inventory/low-stock`
 

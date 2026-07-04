@@ -77,6 +77,8 @@ smartpantry-tfm/
 │   ├── requirements.md
 │   ├── roadmap.md
 │   ├── test-plan.md
+│   ├── improvements.md
+│   ├── technical-debt.md
 │   ├── use-cases.md
 │   ├── vision.md
 │   └── decisions/
@@ -105,6 +107,8 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 | api-design.md | Diseño de la API |
 | roadmap.md | Plan de desarrollo |
 | test-plan.md | Estrategia de pruebas |
+| improvements.md | Registro de mejoras técnicas y de calidad |
+| technical-debt.md | Registro de deuda técnica priorizada |
 | glossary.md | Glosario del proyecto |
 
 ---
@@ -133,7 +137,7 @@ Actualmente el proyecto se encuentra en **Fase 4: lista de compras**.
   - indicador de bajo stock (`quantity <= minimumStock`);
   - pruebas de componente para `InventoryScreen` con React Native Testing Library.
 
-La siguiente fase de implementación es **Fase 4: lista de compras**.
+El foco actual de implementación es **Fase 4: lista de compras**.
 
 ---
 
@@ -214,7 +218,7 @@ cp .env.example .env
 
 - `EXPO_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1`
 
-Con backend y frontend levantados, la pantalla inicial ejecuta el health check y muestra el estado de API y SQLite.
+Con backend y frontend levantados, la aplicación móvil muestra la `InventoryScreen` y consume el CRUD de productos del backend.
 
 ---
 

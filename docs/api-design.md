@@ -212,7 +212,12 @@ La respuesta de generación de receta será efímera y dependerá del inventario
 
 # 9. Endpoints
 
-# 9.1 Health
+Estado de implementación al cierre de Fase 3:
+
+- Implementados en backend: `GET /health` y CRUD de `products`.
+- Planificados para fases posteriores: categorías, lista de compras, endpoints específicos de inventario y recetas IA.
+
+# 9.1 Health (Implementado)
 
 ## GET `/health`
 
@@ -234,7 +239,7 @@ Permite verificar que el backend está disponible.
 
 ---
 
-# 9.2 Productos
+# 9.2 Productos (Implementado)
 
 ## GET `/products`
 
@@ -402,7 +407,9 @@ Sin contenido.
 
 ---
 
-# 9.3 Categorías
+# 9.3 Categorías (Planificado)
+
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
 
 ## GET `/categories`
 
@@ -463,7 +470,9 @@ Crea una categoría.
 
 ---
 
-# 9.4 Lista de compras
+# 9.4 Lista de compras (Planificado)
+
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
 
 ## GET `/shopping-list`
 
@@ -599,7 +608,9 @@ Sin contenido.
 
 ---
 
-# 9.5 Inventario
+# 9.5 Inventario (Planificado)
+
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
 
 ## GET `/inventory/low-stock`
 
@@ -663,7 +674,9 @@ Actualiza la cantidad disponible de un producto.
 
 ---
 
-# 9.6 Recetas IA
+# 9.6 Recetas IA (Planificado)
+
+> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 3.
 
 ## POST `/recipes/generate`
 
@@ -789,19 +802,19 @@ Las recetas no se almacenan en el MVP.
 
 # 11. Relación con requisitos
 
-| Endpoint | Requisitos relacionados |
-|---|---|
-| GET /products | RF-005 |
-| GET /products/{id} | RF-005 |
-| POST /products | RF-001 |
-| PATCH /products/{id} | RF-002 |
-| DELETE /products/{id} | RF-003 |
-| PATCH /inventory/products/{id}/quantity | RF-004 |
-| GET /inventory/low-stock | RF-014 |
-| POST /shopping-list/items | RF-009 |
-| POST /shopping-list/items/from-low-stock | RF-010 |
-| PATCH /shopping-list/items/{id}/purchase | RF-011, RF-012 |
-| POST /recipes/generate | RF-015, RF-016, RF-017 |
+| Endpoint | Requisitos relacionados | Estado en código |
+|---|---|---|
+| GET /products | RF-005 | Implementado |
+| GET /products/{id} | RF-005 | Implementado |
+| POST /products | RF-001 | Implementado |
+| PATCH /products/{id} | RF-002, RF-004, RF-013 | Implementado |
+| DELETE /products/{id} | RF-003 | Implementado |
+| PATCH /inventory/products/{id}/quantity | RF-004 | Planificado |
+| GET /inventory/low-stock | RF-014 | Planificado |
+| POST /shopping-list/items | RF-009 | Planificado |
+| POST /shopping-list/items/from-low-stock | RF-010 | Planificado |
+| PATCH /shopping-list/items/{id}/purchase | RF-011, RF-012 | Planificado |
+| POST /recipes/generate | RF-015, RF-016, RF-017 | Planificado |
 
 ---
 
