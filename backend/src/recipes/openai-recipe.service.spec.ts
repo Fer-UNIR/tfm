@@ -1,7 +1,7 @@
 // Pruebas unitarias del servicio interno OpenAI para recetas.
 import { InternalServerErrorException } from '@nestjs/common';
 import type { ConfigService } from '@nestjs/config';
-import type { GeneratedRecipe } from './types/generated-recipe.type';
+import { MEAL_TYPES, type GeneratedRecipe } from './types/generated-recipe.type';
 import { OpenAiRecipeService } from './openai-recipe.service';
 
 interface MutableOpenAiRecipeService {
@@ -81,6 +81,16 @@ describe('OpenAiRecipeService', () => {
         model: 'gpt-4.1-mini',
         response_format: expect.objectContaining({
           type: 'json_schema',
+          json_schema: expect.objectContaining({
+            schema: expect.objectContaining({
+              properties: expect.objectContaining({
+                mealType: {
+                  type: 'string',
+                  enum: MEAL_TYPES,
+                },
+              }),
+            }),
+          }),
         }),
       }),
     );

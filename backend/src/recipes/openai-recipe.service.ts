@@ -2,7 +2,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import OpenAI from 'openai';
-import type { GeneratedRecipe } from './types/generated-recipe.type';
+import { MEAL_TYPES, type GeneratedRecipe } from './types/generated-recipe.type';
 
 interface OpenAiChatCompletionClient {
   chat: {
@@ -40,7 +40,7 @@ export class OpenAiRecipeService {
     ],
     properties: {
       title: { type: 'string' },
-      mealType: { type: 'string' },
+      mealType: { type: 'string', enum: MEAL_TYPES },
       servings: { type: 'number' },
       preparationTimeMinutes: { type: 'number' },
       ingredientsUsed: {
