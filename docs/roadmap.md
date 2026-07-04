@@ -165,6 +165,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 - Revisar accesibilidad básica.
 - Validar la experiencia completa de uso desde el inventario hasta la generación de recetas.
 - Documentar todas las mejoras realizadas y su justificación.
+- Persistencia local y experiencia offline (RNF-001)
 
 ### Requisitos no funcionales relacionados
 
