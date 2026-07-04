@@ -63,6 +63,10 @@ Cada mejora debe incluir:
 | FI-010 | 2026-07-04 | Frontend Persistencia | Incorporar persistencia local en el dispositivo para permitir consultar y gestionar inventario y lista de compras sin conexión a Internet, sincronizando posteriormente con el backend cuando exista conectividad. | Cumple completamente el RNF-001 y mejora la experiencia de uso en escenarios con conectividad limitada, como durante las compras en un supermercado. | Alta | Pendiente | Evaluar `expo-sqlite` como almacenamiento local y definir estrategia de sincronización con la API del backend. |
 | FI-011 | 2026-07-04 | Documentación técnica | Sincronizar documentación de cierre de Fase 5 (README, roadmap, requisitos, arquitectura, reglas de negocio y API) con la implementación real de recetas IA. | Mejora trazabilidad académica y reduce riesgo de inconsistencias entre código y documentación. | Alta | Implementada | Cierre documental de Fase 5 completado con revisión cruzada de contratos, módulos y estado del proyecto. |
 | FI-012 | 2026-07-04 | Frontend Recetas IA | Incorporar acción explícita de "Regenerar receta" en la interfaz móvil reutilizando `POST /recipes/generate` con las mismas preferencias. | Hace visible para el usuario la capacidad de regeneración (RF-016) ya soportada en backend. | Media | Pendiente | Planificada para Fase 6 de refinamiento UX sin cambios de contrato backend. |
+| FI-013 | 2026-07-04 | Backend Configuración | Incorporar `OPENAI_API_KEY` y `OPENAI_MODEL` en `backend/.env.example` sin valores reales. | Facilita la puesta en marcha local y evita inconsistencias entre README y configuración de ejemplo. | Media | Pendiente | No debe incluir claves reales. Solo placeholders seguros. |
+| FI-014 | 2026-07-04 | Backend Recetas IA | Restringir `mealType` en el `json_schema` de OpenAI mediante `enum` con los valores permitidos (`desayuno`, `almuerzo`, `cena`, `colacion`, `cualquiera`). | Refuerza el contrato de salida y alinea la validación estructurada con el tipo `MealType`. | Media | Pendiente | Ajustar tests si corresponde. |
+| FI-015 | 2026-07-04 | Frontend Configuración | Documentar y validar el uso de IP local en `EXPO_PUBLIC_API_BASE_URL` para pruebas en dispositivo físico con Expo Go. | Reduce errores de conexión derivados del uso de `localhost` en móviles reales. | Media | Pendiente | Puede resolverse en README, `.env.example` o documentación de puesta en marcha. |
+| FI-016 | 2026-07-04 | Frontend Recetas IA | Crear cliente `recipesApi.ts` siguiendo el patrón de `productsApi.ts` y `shoppingListApi.ts` para consumir `POST /recipes/generate`. | Mantiene consistencia de acceso a API y prepara la implementación de `RecipesScreen`. | Alta | Pendiente | Debe reutilizar el contrato de errores REST existente. |
 
 ---
 
@@ -70,7 +74,7 @@ Cada mejora debe incluir:
 
 | Estado | Cantidad |
 |---|---:|
-| Pendiente | 9 |
+| Pendiente | 13 |
 | En progreso | 0 |
 | Implementada | 2 |
 | Descartada | 0 |
