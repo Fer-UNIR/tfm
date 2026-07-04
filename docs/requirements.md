@@ -190,6 +190,10 @@ Permitir regenerar una receta.
 
 Prioridad: Media
 
+Implementación en Fase 5:
+
+- regeneración soportada mediante nuevas invocaciones a `POST /recipes/generate` con iguales o distintas preferencias.
+
 ---
 
 ### RF-017
@@ -197,6 +201,10 @@ Prioridad: Media
 Mostrar ingredientes faltantes cuando la IA los sugiera.
 
 Prioridad: Media
+
+Implementación en Fase 5:
+
+- el contrato `GeneratedRecipe` incluye `missingIngredients` para exponer faltantes sugeridos por IA.
 
 ---
 
@@ -329,8 +337,8 @@ Se considerará completado un requisito cuando:
 | RF-012 | UC-007 | PATCH /shopping-list/items/{id}/purchase | ✅ |
 | RF-013 | UC-004 | PATCH /products/{id} (`minimumStock`) | ✅ |
 | RF-014 | UC-004/UC-006 | Detección en frontend + POST /shopping-list/items/from-low-stock | ✅ |
-| RF-015 | UC-008 | POST /recipes/generate | ⬜ |
-| RF-016 | UC-008 | POST /recipes/generate (regenerar) | ⬜ |
-| RF-017 | UC-008 | POST /recipes/generate | ⬜ |
+| RF-015 | UC-008 | POST /recipes/generate | ✅ |
+| RF-016 | UC-008 | POST /recipes/generate (regenerar) | ✅ |
+| RF-017 | UC-008 | POST /recipes/generate | ✅ |
 | RF-018 | UC-001..UC-007 | SQLite (`products`, `shopping_list_items`) | ✅ |
 | RF-019 | UC-005, UC-006 | Recuperación persistida en backend | ✅ |

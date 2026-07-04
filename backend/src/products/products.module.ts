@@ -9,5 +9,6 @@ import { ProductsService } from './products.service';
   imports: [PersistenceModule],
   controllers: [ProductsController],
   providers: [ProductsRepository, ProductsService],
+  exports: [ProductsService],
 })
 export class ProductsModule {}

@@ -180,7 +180,7 @@ El sistema debe considerar que una misma solicitud puede generar respuestas dife
 
 ## RN-AI-005 Validación de entrada
 
-El sistema no debe solicitar una receta si el inventario no contiene productos suficientes para generar una recomendación útil.
+El sistema no debe solicitar una receta al servicio de IA si el inventario no contiene productos disponibles (`quantity > 0`).
 
 ---
 
@@ -201,6 +201,34 @@ Las claves de acceso a servicios de IA no deben exponerse en la aplicación móv
 Las recetas generadas por IA no serán almacenadas en el MVP.
 
 Cada solicitud de generación utilizará el estado actual del inventario y producirá una nueva respuesta independiente.
+
+---
+
+## RN-AI-009 Contrato estructurado de receta
+
+La receta generada debe respetar un contrato estructurado que incluya al menos:
+
+- título;
+- tipo de comida;
+- porciones;
+- tiempo de preparación;
+- ingredientes utilizados;
+- ingredientes opcionales;
+- ingredientes faltantes;
+- pasos;
+- notas.
+
+---
+
+## RN-AI-010 Rango de pasos de preparación
+
+La receta generada debe contener entre 4 y 8 pasos de preparación para mantener claridad y consistencia en la presentación al usuario.
+
+---
+
+## RN-AI-011 Error de servicio IA
+
+Si la generación con IA falla, el sistema debe devolver un error controlado y comprensible, manteniendo el contrato uniforme de errores de la API.
 
 ---
 
@@ -272,5 +300,13 @@ No forman parte del MVP:
 | RN-SHOP-005 | RF-011 |
 | RN-SHOP-006 | RF-012 |
 | RN-AI-001 | RF-015 |
+| RN-AI-002 | RF-015 |
 | RN-AI-003 | RF-017 |
+| RN-AI-004 | RF-016 |
+| RN-AI-005 | RF-015 |
+| RN-AI-006 | RF-015 |
+| RN-AI-008 | RF-016 |
+| RN-AI-009 | RF-015, RF-017 |
+| RN-AI-010 | RF-015 |
+| RN-AI-011 | RF-016 |
 | RN-DATA-001 | RF-018, RF-019 |

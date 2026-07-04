@@ -130,7 +130,7 @@ El backend será responsable de:
 - validar entradas;
 - aplicar reglas de negocio;
 - gestionar productos, inventario, compras y recetas;
-- centralizar la integración con OpenAI API;
+- centralizar la integración con OpenAI API mediante servicios internos;
 - devolver respuestas consistentes al frontend.
 
 ---
@@ -163,20 +163,44 @@ El backend será el único componente autorizado para comunicarse con OpenAI API
 
 La respuesta de IA será tratada como sugerencia, no como verdad garantizada.
 
+La integración actual se encapsula en `OpenAiRecipeService`, consumido por `RecipesService`.
+
+El servicio interno de IA:
+
+- lee configuración desde variables de entorno (`OPENAI_API_KEY`, `OPENAI_MODEL`);
+- utiliza salida estructurada (`json_schema`) para reforzar el contrato `GeneratedRecipe`;
+- valida la estructura recibida antes de devolver la receta al controlador.
+
 ---
 
-# 7. Módulos previstos del backend
+## 6.5 Flujo interno de RecipesModule
 
-El backend se organizará inicialmente en los siguientes módulos:
+`RecipesModule` aplica la secuencia interna:
+
+1. `RecipesController` recibe `POST /api/v1/recipes/generate`.
+2. `RecipesService` consulta inventario disponible vía `ProductsService`.
+3. Si no hay productos con `quantity > 0`, responde `BUSINESS_RULE_ERROR`.
+4. `RecipesService` construye prompts (`RECIPE_SYSTEM_PROMPT` + prompt dinámico de usuario).
+5. `OpenAiRecipeService` solicita la receta a OpenAI y normaliza la salida.
+6. Se devuelve respuesta final en contrato `data/meta`.
+
+---
+
+# 7. Módulos backend (estado actual)
+
+Módulos implementados actualmente en backend:
 
 | Módulo | Responsabilidad |
 |---|---|
-| ProductsModule | Gestión de productos base |
-| InventoryModule | Gestión de cantidades disponibles y stock mínimo |
-| ShoppingListModule | Gestión de productos pendientes de compra |
-| RecipesModule | Generación efímera de recetas |
-| AiModule | Integración con OpenAI API |
+| HealthModule | Verificación de disponibilidad del backend y estado de persistencia |
+| ProductsModule | Gestión de productos base (CRUD y reglas de inventario relacionadas) |
+| ShoppingListModule | Gestión de productos pendientes de compra y traspaso a inventario al comprar |
+| RecipesModule | Generación de recetas con IA, validación de inventario disponible y construcción de prompts |
 | PersistenceModule | Capa de abstracción para acceso a datos. Inicialmente implementada con SQLite, pero diseñada para permitir sustitución futura por otra tecnología de persistencia. |
+
+Componente interno relevante de `RecipesModule`:
+
+- `OpenAiRecipeService`: integración encapsulada con OpenAI API.
 
 ---
 
@@ -239,18 +263,23 @@ sequenceDiagram
     actor Usuario
     participant Mobile as Aplicación móvil
     participant API as Backend API
+    participant Recipes as RecipesModule
     participant DB as SQLite
+    participant OpenAiSvc as OpenAiRecipeService
     participant OpenAI as OpenAI API
 
     Usuario->>Mobile: Solicita receta
     Mobile->>API: Solicitud de generación
-    API->>DB: Consulta inventario disponible
-    DB-->>API: Devuelve productos
-    API->>API: Construye prompt controlado
-    API->>OpenAI: Solicita receta
-    OpenAI-->>API: Devuelve respuesta generada
-    API->>API: Normaliza respuesta
-    API-->>Mobile: Devuelve receta
+    API->>Recipes: Delega generación
+    Recipes->>DB: Consulta inventario disponible
+    DB-->>Recipes: Devuelve productos
+    Recipes->>Recipes: Construye prompts y valida reglas
+    Recipes->>OpenAiSvc: generateRecipe(systemPrompt, userPrompt)
+    OpenAiSvc->>OpenAI: Solicita receta estructurada
+    OpenAI-->>OpenAiSvc: Devuelve respuesta generada
+    OpenAiSvc-->>Recipes: Receta validada/normalizada
+    Recipes-->>API: Devuelve receta generada
+    API-->>Mobile: Respuesta data/meta
     Mobile-->>Usuario: Muestra receta sugerida
 ```
 

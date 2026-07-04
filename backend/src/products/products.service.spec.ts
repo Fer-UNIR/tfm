@@ -47,6 +47,14 @@ describe('ProductsService', () => {
     expect(result.meta.timestamp).toEqual(expect.any(String));
   });
 
+  it('returns raw products for internal module composition', () => {
+    repositoryMock.findAll.mockReturnValue([baseProduct]);
+
+    const result = service.findAllProducts();
+
+    expect(result).toEqual([baseProduct]);
+  });
+
   it('creates a product using null minimumStock by default', () => {
     repositoryMock.create.mockImplementation((record) => ({
       id: 2,

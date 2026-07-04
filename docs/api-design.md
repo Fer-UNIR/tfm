@@ -98,7 +98,7 @@ Esto permitirá introducir cambios futuros sin romper contratos existentes.
 
 - Todas las respuestas de error del backend usan el mismo formato `error/meta`.
 - `details` se utiliza para incluir lista de errores de validación o pistas de conflicto.
-- Códigos mínimos estabilizados para esta fase: `VALIDATION_ERROR`, `NOT_FOUND`, `DUPLICATE_RESOURCE`, `INTERNAL_ERROR`.
+- Códigos estabilizados para esta fase: `VALIDATION_ERROR`, `NOT_FOUND`, `DUPLICATE_RESOURCE`, `BUSINESS_RULE_ERROR`, `AI_SERVICE_ERROR`, `INTERNAL_ERROR`.
 
 ---
 
@@ -191,15 +191,28 @@ La respuesta de generación de receta será efímera y dependerá del inventario
 ```json
 {
   "title": "Arroz salteado con verduras",
+  "mealType": "almuerzo",
+  "servings": 2,
+  "preparationTimeMinutes": 30,
   "ingredientsUsed": [
-    "Arroz",
-    "Zanahoria",
-    "Cebolla"
+    {
+      "name": "Arroz",
+      "quantity": "1 taza"
+    },
+    {
+      "name": "Zanahoria",
+      "quantity": "1 unidad"
+    }
+  ],
+  "optionalIngredients": [
+    "Queso rallado",
+    "Limon"
   ],
   "missingIngredients": [
     "Salsa de soja"
   ],
   "steps": [
+    "Preparar ingredientes.",
     "Cocer el arroz.",
     "Saltear las verduras.",
     "Mezclar y servir."
@@ -208,15 +221,19 @@ La respuesta de generación de receta será efímera y dependerá del inventario
 }
 ```
 
+Regla de contrato para recetas IA:
+
+- `steps` debe contener entre `4` y `8` elementos.
+
 ---
 
 # 9. Endpoints
 
-Estado de implementación al cierre de Fase 4:
+Estado de implementación al cierre de Fase 5:
 
-- Implementados en backend: `GET /health`, CRUD de `products` y endpoints de `shopping-list`.
+- Implementados en backend: `GET /health`, CRUD de `products`, endpoints de `shopping-list` y `POST /recipes/generate` con integración OpenAI.
 - RF-014 (detección de bajo stock) se cubre en Fase 4 mediante lógica sobre `products` y el endpoint `POST /shopping-list/items/from-low-stock`.
-- Planificados para fases posteriores: categorías, endpoints específicos de inventario y recetas IA.
+- Planificados para fases posteriores: categorías y endpoints específicos de inventario.
 
 # 9.1 Health (Implementado)
 
@@ -685,9 +702,9 @@ Actualiza la cantidad disponible de un producto.
 
 ---
 
-# 9.6 Recetas IA (Planificado)
+# 9.6 Recetas IA (Implementado con OpenAI)
 
-> Estos endpoints se mantienen como contrato objetivo y todavía no están implementados en backend al cierre de Fase 4.
+> Endpoint implementado en backend con inventario real y generación de receta vía OpenAI.
 
 ## POST `/recipes/generate`
 
@@ -700,6 +717,7 @@ Las recetas no se almacenan en el MVP.
 ```json
 {
   "preferences": {
+    "mealType": "almuerzo",
     "maxPreparationMinutes": 30,
     "servings": 2,
     "dietaryRestrictions": []
@@ -709,10 +727,20 @@ Las recetas no se almacenan en el MVP.
 
 ### Reglas
 
-- Debe existir al menos un conjunto mínimo de productos disponibles.
-- El backend consulta el inventario.
-- El backend construye un prompt controlado.
-- La solicitud a OpenAI se realiza únicamente desde backend.
+- El backend consulta inventario real (`products`) y filtra productos con `quantity > 0`.
+- Si no hay productos disponibles, la API responde `400 BUSINESS_RULE_ERROR`.
+- `mealType` es opcional y permite: `desayuno`, `almuerzo`, `cena`, `colacion`, `cualquiera`.
+- `servings` es opcional y debe estar entre `1` y `6`.
+- `maxPreparationMinutes` es opcional y debe estar entre `5` y `180`.
+- `dietaryRestrictions` es opcional y debe ser un array de strings.
+- RF-016 se cubre invocando nuevamente `POST /recipes/generate` con las mismas o nuevas preferencias.
+- Se construye internamente una estructura `inventoryForPrompt` con `name`, `quantity` y `unit`.
+- Se construye un prompt dinámico con inventario y preferencias normalizadas.
+- La generación se realiza con `RECIPE_SYSTEM_PROMPT` + prompt de usuario dinámico.
+- `steps` debe contener entre `4` y `8` elementos.
+- El esquema `json_schema` restringe `steps` con `minItems: 4` y `maxItems: 8`.
+- Como defensa adicional para el MVP, si la IA devuelve más de `8` pasos, el backend trunca a `8`.
+- Errores de OpenAI o parseo se mapean a `500 AI_SERVICE_ERROR`.
 - La receta generada es una sugerencia.
 - La respuesta no se almacena.
 
@@ -721,21 +749,63 @@ Las recetas no se almacenan en el MVP.
 ```json
 {
   "data": {
-    "title": "Arroz salteado con verduras",
+    "title": "Tortilla de verduras",
+    "mealType": "almuerzo",
+    "servings": 3,
+    "preparationTimeMinutes": 35,
     "ingredientsUsed": [
-      "Arroz",
-      "Zanahoria",
-      "Cebolla"
+      {
+        "name": "Huevo",
+        "quantity": "2 unidades"
+      },
+      {
+        "name": "Zanahoria",
+        "quantity": "1 unidad"
+      }
+    ],
+    "optionalIngredients": [
+      "Queso rallado"
     ],
     "missingIngredients": [
-      "Salsa de soja"
+      "Pimienta"
     ],
     "steps": [
-      "Cocer el arroz.",
-      "Saltear las verduras.",
-      "Mezclar y servir."
+      "Preparar ingredientes.",
+      "Batir.",
+      "Cocinar.",
+      "Servir."
     ],
-    "notes": "Receta generada como sugerencia a partir del inventario disponible."
+    "notes": "Receta generada por IA."
+  },
+  "meta": {
+    "timestamp": "2026-01-01T12:00:00.000Z"
+  }
+}
+```
+
+### Error relevante (inventario sin disponibilidad)
+
+```json
+{
+  "error": {
+    "code": "BUSINESS_RULE_ERROR",
+    "message": "No available inventory products for recipe generation.",
+    "details": ["inventory"]
+  },
+  "meta": {
+    "timestamp": "2026-01-01T12:00:00.000Z"
+  }
+}
+```
+
+### Error relevante (servicio IA)
+
+```json
+{
+  "error": {
+    "code": "AI_SERVICE_ERROR",
+    "message": "Failed to generate recipe using AI service.",
+    "details": ["OpenAI timeout."]
   },
   "meta": {
     "timestamp": "2026-01-01T12:00:00.000Z"
@@ -802,6 +872,7 @@ Las recetas no se almacenan en el MVP.
 ```ts
 {
   preferences?: {
+    mealType?: 'desayuno' | 'almuerzo' | 'cena' | 'colacion' | 'cualquiera';
     maxPreparationMinutes?: number;
     servings?: number;
     dietaryRestrictions?: string[];
@@ -827,7 +898,7 @@ Las recetas no se almacenan en el MVP.
 | DELETE /shopping-list/items/{id} | RF-008 | Implementado |
 | PATCH /inventory/products/{id}/quantity | RF-004 | Planificado |
 | GET /inventory/low-stock | RF-014 | Planificado |
-| POST /recipes/generate | RF-015, RF-016, RF-017 | Planificado |
+| POST /recipes/generate | RF-015, RF-016, RF-017 | Implementado (OpenAI) |
 
 ---
 

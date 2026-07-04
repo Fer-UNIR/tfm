@@ -61,6 +61,8 @@ Cada mejora debe incluir:
 | FI-008 | 2026-07-04 | Frontend Compras | Revisar el comportamiento de la sección "Productos con bajo stock" cuando un producto ya fue agregado a la lista de compras. Evaluar mantenerlo visible con indicador de "Ya agregado" o deshabilitar la acción de agregar nuevamente. | Reducir confusión y evitar acciones duplicadas manteniendo la representación correcta del estado del inventario. | Media | Pendiente | Decisión de experiencia de usuario a validar mediante pruebas manuales durante la Fase 6. |
 | FI-009 | 2026-07-04 | Frontend Compras | Permitir modificar la cantidad de un producto directamente desde la lista de compras mediante acciones rápidas (+1 / -1), sin eliminar y volver a agregar el elemento. | Reduce pasos para el usuario y mejora la eficiencia al preparar la lista de compras. | Alta | Pendiente | Mantener sincronización con las reglas de negocio existentes y actualizar la cantidad pendiente en tiempo real. |
 | FI-010 | 2026-07-04 | Frontend Persistencia | Incorporar persistencia local en el dispositivo para permitir consultar y gestionar inventario y lista de compras sin conexión a Internet, sincronizando posteriormente con el backend cuando exista conectividad. | Cumple completamente el RNF-001 y mejora la experiencia de uso en escenarios con conectividad limitada, como durante las compras en un supermercado. | Alta | Pendiente | Evaluar `expo-sqlite` como almacenamiento local y definir estrategia de sincronización con la API del backend. |
+| FI-011 | 2026-07-04 | Documentación técnica | Sincronizar documentación de cierre de Fase 5 (README, roadmap, requisitos, arquitectura, reglas de negocio y API) con la implementación real de recetas IA. | Mejora trazabilidad académica y reduce riesgo de inconsistencias entre código y documentación. | Alta | Implementada | Cierre documental de Fase 5 completado con revisión cruzada de contratos, módulos y estado del proyecto. |
+| FI-012 | 2026-07-04 | Frontend Recetas IA | Incorporar acción explícita de "Regenerar receta" en la interfaz móvil reutilizando `POST /recipes/generate` con las mismas preferencias. | Hace visible para el usuario la capacidad de regeneración (RF-016) ya soportada en backend. | Media | Pendiente | Planificada para Fase 6 de refinamiento UX sin cambios de contrato backend. |
 
 ---
 
@@ -68,9 +70,9 @@ Cada mejora debe incluir:
 
 | Estado | Cantidad |
 |---|---:|
-| Pendiente | 8 |
+| Pendiente | 9 |
 | En progreso | 0 |
-| Implementada | 1 |
+| Implementada | 2 |
 | Descartada | 0 |
 
 ---

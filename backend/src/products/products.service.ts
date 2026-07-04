@@ -10,8 +10,12 @@ import { ProductsRepository } from './products.repository';
 export class ProductsService {
   constructor(private readonly productsRepository: ProductsRepository) {}
 
+  findAllProducts(): Product[] {
+    return this.productsRepository.findAll();
+  }
+
   findAll(): ProductListResponse {
-    const products = this.productsRepository.findAll();
+    const products = this.findAllProducts();
 
     return {
       data: products,

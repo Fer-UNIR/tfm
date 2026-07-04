@@ -16,7 +16,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 # 2. Estado actual
 
-**Fase:** Fase 5 — Recetas con IA
+**Fase:** Fase 6 — Refinamiento funcional y experiencia de usuario
 
 ## Completado
 
@@ -55,6 +55,15 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 - Agregado individual por producto en sección de bajo stock.
 - Compra masiva "marcar todos como comprados" con resumen de resultados.
 - Pruebas unitarias/e2e backend y pruebas de componente frontend de compras en verde.
+- Fase 5: recetas con IA.
+- `RecipesModule` implementado con `POST /recipes/generate`.
+- Integración real con OpenAI encapsulada en `OpenAiRecipeService`.
+- Consulta de inventario disponible (`quantity > 0`) previa a generación.
+- Construcción de prompt dinámico con inventario y preferencias.
+- Contrato estructurado `GeneratedRecipe` con salida JSON validada.
+- Regla de pasos reforzada (`steps` entre 4 y 8), con truncado defensivo a 8.
+- Manejo de errores `BUSINESS_RULE_ERROR` y `AI_SERVICE_ERROR` en contrato uniforme `error/meta`.
+- Pruebas unitarias y e2e de recetas IA en verde.
 
 ---
 
@@ -133,7 +142,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 
 ---
 
-## Fase 5 — Recetas con IA
+## Fase 5 — Recetas con IA (completada)
 
 ### Objetivos
 
@@ -226,7 +235,7 @@ Cada fase entrega una funcionalidad completa y verificable, permitiendo validar 
 | Frontend de inventario funcional | ✅ |
 | Inventario funcional completo | ✅ |
 | Lista de compras funcional | ✅ |
-| Recetas IA funcionando | ⬜ |
+| Recetas IA funcionando | ✅ |
 | Refinamiento funcional y UX completado | ⬜ |
 | Pruebas completadas | ⬜ |
 | MVP finalizado | ⬜ |

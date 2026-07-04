@@ -115,7 +115,7 @@ La documentación técnica del proyecto se encuentra en la carpeta `docs`.
 
 # Estado del proyecto
 
-Actualmente el proyecto se encuentra en **Fase 5: recetas con IA (en preparación)**.
+Actualmente el proyecto se encuentra en **Fase 6: refinamiento funcional y experiencia de usuario**.
 
 - backend NestJS inicializado;
 - frontend Expo + TypeScript inicializado;
@@ -156,8 +156,23 @@ Actualmente el proyecto se encuentra en **Fase 5: recetas con IA (en preparació
     - marcar todos los pendientes como comprados (resumen de éxito/error parcial);
     - eliminación de item;
   - pruebas unitarias/e2e de backend y pruebas de componente frontend para compras.
+- **Fase 5 recetas con IA completada**:
+  - módulo backend `RecipesModule` implementado con endpoint:
+    - `POST /api/v1/recipes/generate`
+  - integración real con OpenAI encapsulada en `OpenAiRecipeService`;
+  - consulta de inventario real y filtrado de productos disponibles (`quantity > 0`);
+  - construcción de prompt dinámico con inventario y preferencias normalizadas;
+  - contrato de salida tipado `GeneratedRecipe` con validación estructurada;
+  - regla de pasos de receta reforzada (`steps` entre 4 y 8);
+  - estrategia defensiva para robustez MVP:
+    - validación de mínimo 4 pasos;
+    - truncado a 8 pasos si la IA devuelve más;
+  - manejo de errores en contrato REST uniforme:
+    - `BUSINESS_RULE_ERROR` cuando no hay inventario disponible;
+    - `AI_SERVICE_ERROR` ante fallos del servicio IA o parseo;
+  - pruebas unitarias y e2e de backend actualizadas para flujo de recetas IA.
 
-El foco actual de implementación pasa a **Fase 5: recetas con IA**.
+El foco actual de implementación pasa a **Fase 6: refinamiento funcional y experiencia de usuario**.
 
 Roadmap actualizado:
 
@@ -223,6 +238,11 @@ Variables de entorno de ejemplo:
 ```bash
 cp .env.example .env
 ```
+
+Configura además las variables de IA en `backend/.env`:
+
+- `OPENAI_API_KEY=<tu_api_key>`
+- `OPENAI_MODEL=gpt-4.1-mini` (o modelo compatible)
 
 > `backend/.env.example` no incluye claves reales.
 
